@@ -21,17 +21,17 @@
 			<view class="profile-header" v-if="isLoggedIn">
 				<view class="user-info">
 					<view class="avatar-wrapper">
-						<image class="avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZayQbW7Q6gFkqRnSNBpL-M3aW8BrZXWw9026KO1h6HrIDkcLaJpRuBPjjG2TQMxT9Ap-vV3LWemQ67OaXL39Ba0vpueIVNfyJQmfp5zLnALZuI0J1ZmHIqmhnj6rjXz7EH4aYqzF7gz4p2im-IiMGdSdKTVNXrMqb1nf1WAR2n5KoaLl-sSZZ3FlHMQdTUXR6cHxIibC4END5uFyNOzTPYiYIaQ1BD-FIXZGlKvPkVvy1r9XfkDwRa7ubbDJ9EZ_UabL04Beheffx" mode="aspectFill"></image>
+						<image class="avatar" :src="userProfile.avatar || 'https://lh3.googleusercontent.com/aida-public/AB6AXuDZayQbW7Q6gFkqRnSNBpL-M3aW8BrZXWw9026KO1h6HrIDkcLaJpRuBPjjG2TQMxT9Ap-vV3LWemQ67OaXL39Ba0vpueIVNfyJQmfp5zLnALZuI0J1ZmHIqmhnj6rjXz7EH4aYqzF7gz4p2im-IiMGdSdKTVNXrMqb1nf1WAR2n5KoaLl-sSZZ3FlHMQdTUXR6cHxIibC4END5uFyNOzTPYiYIaQ1BD-FIXZGlKvPkVvy1r9XfkDwRa7ubbDJ9EZ_UabL04Beheffx'" mode="aspectFill"></image>
 					</view>
 					<view class="user-details">
-						<text class="username">极客小王</text>
+						<text class="username">{{ userProfile.nickname || '极客小王' }}</text>
 						<view class="verified-tag">
 							<text class="material-symbols-outlined icon-small">verified_user</text>
 							<text>认证用户</text>
 						</view>
 					</view>
 				</view>
-				<view class="edit-btn active-scale">编辑资料</view>
+				<view class="edit-btn active-scale" @click="goToEdit">编辑资料</view>
 			</view>
 
 			<view class="profile-header unlogged-header" v-else @click="goToLogin">
@@ -167,13 +167,24 @@
 		},
 		data() {
 			return {
-				isLoggedIn: false
+				isLoggedIn: false,
+				userProfile: {
+					avatar: '',
+					nickname: ''
+				}
 			}
 		},
 		onShow() {
 			this.isLoggedIn = uni.getStorageSync('isLoggedIn') || false;
+			const storedProfile = uni.getStorageSync('userProfile');
+			if (storedProfile) {
+				this.userProfile = storedProfile;
+			}
 		},
 		methods: {
+			goToEdit() {
+				uni.navigateTo({ url: '/pages/profile/edit' });
+			},
 			handleLogout() {
 				uni.removeStorageSync('isLoggedIn');
 				this.isLoggedIn = false;
