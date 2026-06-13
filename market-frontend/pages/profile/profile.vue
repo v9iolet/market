@@ -18,7 +18,7 @@
 
 		<scroll-view scroll-y class="main-content">
 			<!-- User Profile Header -->
-			<view class="profile-header">
+			<view class="profile-header" v-if="isLoggedIn">
 				<view class="user-info">
 					<view class="avatar-wrapper">
 						<image class="avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZayQbW7Q6gFkqRnSNBpL-M3aW8BrZXWw9026KO1h6HrIDkcLaJpRuBPjjG2TQMxT9Ap-vV3LWemQ67OaXL39Ba0vpueIVNfyJQmfp5zLnALZuI0J1ZmHIqmhnj6rjXz7EH4aYqzF7gz4p2im-IiMGdSdKTVNXrMqb1nf1WAR2n5KoaLl-sSZZ3FlHMQdTUXR6cHxIibC4END5uFyNOzTPYiYIaQ1BD-FIXZGlKvPkVvy1r9XfkDwRa7ubbDJ9EZ_UabL04Beheffx" mode="aspectFill"></image>
@@ -34,8 +34,23 @@
 				<view class="edit-btn active-scale">编辑资料</view>
 			</view>
 
+			<view class="profile-header unlogged-header" v-else @click="goToLogin">
+				<view class="user-info">
+					<view class="avatar-wrapper">
+						<view class="avatar empty-avatar">
+							<text class="material-symbols-outlined">person</text>
+						</view>
+					</view>
+					<view class="user-details">
+						<text class="username">点击登录 / 注册</text>
+						<text class="sub-text">登录后享受更多专属服务</text>
+					</view>
+				</view>
+				<view class="edit-btn active-scale">去登录</view>
+			</view>
+
 			<!-- Stats Section -->
-			<view class="stats-section">
+			<view class="stats-section" v-if="isLoggedIn">
 				<view class="stat-item">
 					<text class="stat-value">12</text>
 					<text class="stat-label">关注</text>
@@ -130,6 +145,12 @@
 				</view>
 			</view>
 
+			<view class="logout-section" v-if="isLoggedIn">
+				<view class="logout-btn active-scale" @click="handleLogout">
+					<text>退出当前账号</text>
+				</view>
+			</view>
+
 			<view class="safe-bottom-area"></view>
 		</scroll-view>
 
@@ -146,11 +167,20 @@
 		},
 		data() {
 			return {
-				
+				isLoggedIn: false
 			}
 		},
+		onShow() {
+			this.isLoggedIn = uni.getStorageSync('isLoggedIn') || false;
+		},
 		methods: {
-			
+			handleLogout() {
+				uni.removeStorageSync('isLoggedIn');
+				this.isLoggedIn = false;
+			},
+			goToLogin() {
+				uni.navigateTo({ url: '/pages/login/login' });
+			}
 		}
 	}
 </script>
@@ -255,6 +285,17 @@
 				}
 			}
 
+			.empty-avatar {
+				background-color: $color-surface-container-high;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: $color-on-surface-variant;
+				.material-symbols-outlined {
+					font-size: 80rpx;
+				}
+			}
+
 			.user-details {
 				display: flex;
 				flex-direction: column;
@@ -295,6 +336,14 @@
 			font-size: 24rpx;
 			font-weight: 600;
 			letter-spacing: 0.05em;
+		}
+	}
+
+	.unlogged-header {
+		.sub-text {
+			font-size: 24rpx;
+			color: $color-on-surface-variant;
+			margin-top: 8rpx;
 		}
 	}
 
@@ -449,6 +498,22 @@
 				color: $color-outline;
 				font-size: 48rpx;
 			}
+		}
+	}
+
+	.logout-section {
+		margin-top: $spacing-stack-lg;
+		margin-bottom: $spacing-stack-lg;
+		.logout-btn {
+			background-color: $color-surface-container-lowest;
+			color: $color-error;
+			font-size: 32rpx;
+			font-weight: 600;
+			text-align: center;
+			padding: 32rpx;
+			border-radius: 32rpx;
+			box-shadow: 0 40rpx 50rpx -24rpx rgba(0, 0, 0, 0.1);
+			border: 2rpx solid rgba(211, 228, 254, 0.2);
 		}
 	}
 
