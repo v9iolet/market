@@ -3,12 +3,23 @@
 		<!-- TopAppBar -->
 		<view class="header glass-effect">
 			<view class="header-content">
-				<view class="icon-btn active-scale">
+				<view class="icon-btn active-scale" v-if="!isSearchMode">
 					<text class="material-symbols-outlined icon">menu</text>
 				</view>
-				<text class="header-title">消息</text>
-				<view class="icon-btn active-scale">
+				<text class="header-title" v-if="!isSearchMode">消息</text>
+				<view class="icon-btn active-scale" v-if="!isSearchMode" @click="toggleSearch">
 					<text class="material-symbols-outlined icon">search</text>
+				</view>
+				
+				<view class="search-bar" v-if="isSearchMode">
+					<text class="material-symbols-outlined icon-search">search</text>
+					<input 
+						class="search-input" 
+						v-model="searchQuery" 
+						placeholder="搜索联系人或消息..." 
+						:focus="isSearchMode"
+					/>
+					<text class="material-symbols-outlined icon-close active-scale" @click="toggleSearch">close</text>
 				</view>
 			</view>
 		</view>
@@ -39,63 +50,24 @@
 
 			<!-- Message List -->
 			<view class="message-list">
-				<!-- Chat Entry 1 -->
-				<view class="chat-entry active-scale">
+				<view class="chat-entry active-scale" v-for="(msg, index) in filteredMessages" :key="msg.id" :class="{'opacity-80': msg.isOfficial}">
 					<view class="avatar-wrapper">
-						<image class="avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfFZbGJuxvmI2uNx-5IsMX3_uotLPtyHCV8dCtB3iJxfT7HHrqmABoHUV1-emVGdjtg2MaOKvpVUMrk7mwAjqTAXiZdUyvncqwTKC9zZKQqJHU0AXoJ1BKVKLSGr_3IHMyCKA5jGjwmKXNiz1_D9zyJdfQzOZ_ut78T-hiwHE4L9xq_awKh7uQFiPGRcOEa13mCtL1Cvm6SKU88oa_eycwyxIt0PjNDDXIgVsXSwNwL4i6sCyEeHGQZcq6rIHFXx6LSODS19TDRDqx" mode="aspectFill"></image>
-						<view class="status-dot"></view>
-					</view>
-					<view class="chat-info">
-						<view class="chat-header">
-							<text class="chat-name">Anna Studio</text>
-							<text class="chat-time">10:42 AM</text>
-						</view>
-						<text class="chat-preview">您好，这款Vintage包包还在吗？</text>
-					</view>
-				</view>
-
-				<!-- Chat Entry 2 -->
-				<view class="chat-entry active-scale">
-					<view class="avatar-wrapper">
-						<image class="avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpv8hY7xabLnYvciJSFaH3aOYP1ohUeGQ9Ufjaz-O1DqdLepIDeIXWTC_QlIkHj9Qm5cHFO9SCgTczTqpKtV72TAu7PCdAPyZZMI7D4DoHSh430R87NDRhAmt3by3GUuet7K9DqKevVtTXgCeal1GFOyt4zC-OI6Sb-8tXFuugSfkVEn1NDw6sj9M1PhkRRudbe1ZAuvEq0H4_AQN61mgjaQneI56CGUjGMMxlrJqsKAPrSivNsR0f0dPpD6p82DE-2HCrdV-tb00_" mode="aspectFill"></image>
-					</view>
-					<view class="chat-info">
-						<view class="chat-header">
-							<text class="chat-name">Maison Collector</text>
-							<text class="chat-time">昨天</text>
-						</view>
-						<text class="chat-preview">价格可以再商量，看您诚心要。</text>
-					</view>
-				</view>
-
-				<!-- Chat Entry 3 -->
-				<view class="chat-entry active-scale">
-					<view class="avatar-wrapper">
-						<image class="avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-Ta2lRNdLZPA05SD-5YfGAffamtiAmHMQUzto4-U3bR2pnAzbhrWhVWkzLRFDAaQonvcvDUmrL-LmTHVFMfkP5W04NTRDwF2uNCvBLFekeZcf4VV1p-UUhPDOh3I_hoyE8UyOOeMukPsMILb0_MtdrsAwG1R0a0bhi3-ywMxoV-BVve_V9pnitQPzS47pG9yk30J2Aq-FbXc3vbD84tPEkdcKfbgx-qDX5JVswni9Hk_0US0MlHxqk8O2CPrkj-VoDOQNno0-uICz" mode="aspectFill"></image>
-					</view>
-					<view class="chat-info">
-						<view class="chat-header">
-							<text class="chat-name">Lumina Tech</text>
-							<text class="chat-time">星期二</text>
-						</view>
-						<text class="chat-preview">物流信息已经更新了，请注意查收。</text>
-					</view>
-				</view>
-
-				<!-- Chat Entry 4 -->
-				<view class="chat-entry active-scale opacity-80">
-					<view class="avatar-wrapper">
-						<view class="icon-avatar">
+						<image v-if="!msg.isOfficial" class="avatar" :src="msg.avatar" mode="aspectFill"></image>
+						<view v-else class="icon-avatar">
 							<text class="material-symbols-outlined">support_agent</text>
 						</view>
+						<view v-if="msg.statusDot" class="status-dot"></view>
 					</view>
 					<view class="chat-info">
 						<view class="chat-header">
-							<text class="chat-name">官方客服</text>
-							<text class="chat-time">12/05</text>
+							<text class="chat-name">{{ msg.name }}</text>
+							<text class="chat-time">{{ msg.time }}</text>
 						</view>
-						<text class="chat-preview">您的申诉已受理，进度可在详情页查看。</text>
+						<text class="chat-preview">{{ msg.preview }}</text>
 					</view>
+				</view>
+				<view v-if="filteredMessages.length === 0" class="empty-state">
+					<text>没有找到相关消息</text>
 				</view>
 			</view>
 
@@ -115,11 +87,65 @@
 		},
 		data() {
 			return {
-				
+				isSearchMode: false,
+				searchQuery: '',
+				mockMessages: [
+					{
+						id: 1,
+						name: 'Anna Studio',
+						time: '10:42 AM',
+						preview: '您好，这款Vintage包包还在吗？',
+						avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBfFZbGJuxvmI2uNx-5IsMX3_uotLPtyHCV8dCtB3iJxfT7HHrqmABoHUV1-emVGdjtg2MaOKvpVUMrk7mwAjqTAXiZdUyvncqwTKC9zZKQqJHU0AXoJ1BKVKLSGr_3IHMyCKA5jGjwmKXNiz1_D9zyJdfQzOZ_ut78T-hiwHE4L9xq_awKh7uQFiPGRcOEa13mCtL1Cvm6SKU88oa_eycwyxIt0PjNDDXIgVsXSwNwL4i6sCyEeHGQZcq6rIHFXx6LSODS19TDRDqx',
+						isOfficial: false,
+						statusDot: true
+					},
+					{
+						id: 2,
+						name: 'Maison Collector',
+						time: '昨天',
+						preview: '价格可以再商量，看您诚心要。',
+						avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCpv8hY7xabLnYvciJSFaH3aOYP1ohUeGQ9Ufjaz-O1DqdLepIDeIXWTC_QlIkHj9Qm5cHFO9SCgTczTqpKtV72TAu7PCdAPyZZMI7D4DoHSh430R87NDRhAmt3by3GUuet7K9DqKevVtTXgCeal1GFOyt4zC-OI6Sb-8tXFuugSfkVEn1NDw6sj9M1PhkRRudbe1ZAuvEq0H4_AQN61mgjaQneI56CGUjGMMxlrJqsKAPrSivNsR0f0dPpD6p82DE-2HCrdV-tb00_',
+						isOfficial: false,
+						statusDot: false
+					},
+					{
+						id: 3,
+						name: 'Lumina Tech',
+						time: '星期二',
+						preview: '物流信息已经更新了，请注意查收。',
+						avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC-Ta2lRNdLZPA05SD-5YfGAffamtiAmHMQUzto4-U3bR2pnAzbhrWhVWkzLRFDAaQonvcvDUmrL-LmTHVFMfkP5W04NTRDwF2uNCvBLFekeZcf4VV1p-UUhPDOh3I_hoyE8UyOOeMukPsMILb0_MtdrsAwG1R0a0bhi3-ywMxoV-BVve_V9pnitQPzS47pG9yk30J2Aq-FbXc3vbD84tPEkdcKfbgx-qDX5JVswni9Hk_0US0MlHxqk8O2CPrkj-VoDOQNno0-uICz',
+						isOfficial: false,
+						statusDot: false
+					},
+					{
+						id: 4,
+						name: '官方客服',
+						time: '12/05',
+						preview: '您的申诉已受理，进度可在详情页查看。',
+						avatar: '',
+						isOfficial: true,
+						statusDot: false
+					}
+				]
+			}
+		},
+		computed: {
+			filteredMessages() {
+				if (!this.searchQuery) return this.mockMessages;
+				const lowerQuery = this.searchQuery.toLowerCase();
+				return this.mockMessages.filter(msg => 
+					msg.name.toLowerCase().includes(lowerQuery) || 
+					msg.preview.toLowerCase().includes(lowerQuery)
+				);
 			}
 		},
 		methods: {
-			
+			toggleSearch() {
+				this.isSearchMode = !this.isSearchMode;
+				if (!this.isSearchMode) {
+					this.searchQuery = '';
+				}
+			}
 		}
 	}
 </script>
@@ -137,6 +163,37 @@
 	}
 
 	/* TopAppBar */
+	.search-bar {
+		display: flex;
+		align-items: center;
+		flex: 1;
+		background-color: $color-surface-container-low;
+		border-radius: 999rpx;
+		padding: 12rpx 24rpx;
+		gap: 16rpx;
+		
+		.icon-search, .icon-close {
+			font-size: 36rpx;
+			color: $color-outline;
+		}
+		
+		.search-input {
+			flex: 1;
+			font-size: 28rpx;
+			background: transparent;
+			border: none;
+			padding: 0;
+			color: $color-on-surface;
+		}
+	}
+	
+	.empty-state {
+		display: flex;
+		justify-content: center;
+		padding: 40rpx 0;
+		color: $color-outline;
+		font-size: 28rpx;
+	}
 	.header {
 		position: fixed;
 		top: 0;
