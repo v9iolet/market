@@ -80,6 +80,13 @@
 				"navigationBarTitleText": "通知消息",
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"path": "pages/messages/chat",
+			"style": {
+				"navigationBarTitleText": "聊天",
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"globalStyle": {

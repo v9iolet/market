@@ -252,7 +252,7 @@ export default {
 - Create: `market-frontend/pages/messages/chat.vue`
 - Modify: `market-frontend/pages.json`
 
-- [ ] **Step 1: Write chat UI component with Quick Replies and Input Bar**
+- [x] **Step 1: Write chat UI component with Quick Replies and Input Bar**
 
 ```vue
 <template>
