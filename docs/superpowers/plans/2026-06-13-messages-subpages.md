@@ -360,7 +360,7 @@ export default {
 **Files:**
 - Modify: `market-frontend/pages/messages/messages.vue`
 
-- [ ] **Step 1: Modify functional group templates to attach `@click` handlers**
+- [x] **Step 1: Modify functional group templates to attach `@click` handlers**
 
 ```diff
 -				<view class="func-item active-scale">
@@ -387,14 +387,14 @@ export default {
 				</view>
 ```
 
-- [ ] **Step 2: Modify message list items to attach `@click`**
+- [x] **Step 2: Modify message list items to attach `@click`**
 
 ```diff
 -				<view class="chat-entry active-scale" v-for="(msg, index) in filteredMessages" :key="msg.id" :class="{'opacity-80': msg.isOfficial}">
 +				<view class="chat-entry active-scale" v-for="(msg, index) in filteredMessages" :key="msg.id" :class="{'opacity-80': msg.isOfficial}" @click="navToChat(msg)">
 ```
 
-- [ ] **Step 3: Add `navTo` and `navToChat` methods in `<script>`**
+- [x] **Step 3: Add `navTo` and `navToChat` methods in `<script>`**
 
 ```javascript
 // Add these methods inside methods: {} block

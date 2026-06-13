@@ -27,20 +27,20 @@
 		<scroll-view scroll-y class="main-content">
 			<!-- Functional Entry Group -->
 			<view class="functional-group">
-				<view class="func-item active-scale">
+				<view class="func-item active-scale" @click="navTo('logistics')">
 					<view class="icon-circle logistics">
 						<text class="material-symbols-outlined icon-fill">local_shipping</text>
 					</view>
 					<text class="func-label">交易物流</text>
 				</view>
-				<view class="func-item active-scale">
+				<view class="func-item active-scale" @click="navTo('notices')">
 					<view class="icon-circle notices">
 						<text class="material-symbols-outlined icon-fill">notifications</text>
 						<view class="badge"></view>
 					</view>
 					<text class="func-label">通知消息</text>
 				</view>
-				<view class="func-item active-scale">
+				<view class="func-item active-scale" @click="navTo('interactions')">
 					<view class="icon-circle interactions">
 						<text class="material-symbols-outlined icon-fill">favorite</text>
 					</view>
@@ -50,7 +50,7 @@
 
 			<!-- Message List -->
 			<view class="message-list">
-				<view class="chat-entry active-scale" v-for="(msg, index) in filteredMessages" :key="msg.id" :class="{'opacity-80': msg.isOfficial}">
+				<view class="chat-entry active-scale" v-for="(msg, index) in filteredMessages" :key="msg.id" :class="{'opacity-80': msg.isOfficial}" @click="navToChat(msg)">
 					<view class="avatar-wrapper">
 						<image v-if="!msg.isOfficial" class="avatar" :src="msg.avatar" mode="aspectFill"></image>
 						<view v-else class="icon-avatar">
@@ -145,6 +145,12 @@
 				if (!this.isSearchMode) {
 					this.searchQuery = '';
 				}
+			},
+			navTo(type) {
+				uni.navigateTo({ url: `/pages/messages/${type}` });
+			},
+			navToChat(msg) {
+				uni.navigateTo({ url: `/pages/messages/chat?id=${msg.id}&name=${encodeURIComponent(msg.name)}` });
 			}
 		}
 	}
