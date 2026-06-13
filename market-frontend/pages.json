@@ -87,6 +87,13 @@
 				"navigationBarTitleText": "聊天",
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"path": "pages/profile/edit",
+			"style": {
+				"navigationBarTitleText": "编辑资料",
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"globalStyle": {
