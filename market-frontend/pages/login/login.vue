@@ -80,10 +80,18 @@
       </view>
       <view class="icon-group">
         <view class="icon-item active-scale">
-          <text class="material-symbols-outlined">chat</text>
+          <image
+            class="auth-icon"
+            src="https://img.icons8.com/color/96/wechat.png"
+            mode="aspectFit"
+          ></image>
         </view>
         <view class="icon-item active-scale">
-          <text class="material-symbols-outlined">apple</text>
+          <image
+            class="auth-icon"
+            src="https://img.icons8.com/color/96/qq.png"
+            mode="aspectFit"
+          ></image>
         </view>
       </view>
     </view>
@@ -103,8 +111,10 @@ const handleAction = () => {
   // 模拟操作成功，写入状态
   uni.setStorageSync("isLoggedIn", true);
 
-  // 返回 profile 页面
-  uni.navigateBack();
+  // 重定向到 profile 页面
+  uni.reLaunch({
+    url: "/pages/profile/profile",
+  });
 };
 </script>
 
@@ -287,8 +297,9 @@ const handleAction = () => {
       justify-content: center;
       color: $color-on-surface;
 
-      .material-symbols-outlined {
-        font-size: 48rpx;
+      .auth-icon {
+        width: 56rpx;
+        height: 56rpx;
       }
     }
   }
