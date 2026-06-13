@@ -117,6 +117,10 @@
 </script>
 
 <style lang="scss" scoped>
+	view, scroll-view, text, image, label {
+		box-sizing: border-box;
+	}
+
 	.checkout-page {
 		min-height: 100vh;
 		background-color: $color-background;
