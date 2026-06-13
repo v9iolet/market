@@ -65,6 +65,45 @@
 import ProductCard from '@/components/ProductCard/ProductCard.vue';
 import EmptyState from '@/components/EmptyState/EmptyState.vue';
 
+const categoryMap = {
+	'手机数码': [
+		{ name: '全部', icon: 'apps' },
+		{ name: '手机', icon: 'smartphone' },
+		{ name: '平板', icon: 'tablet_mac' },
+		{ name: '电脑', icon: 'laptop_mac' },
+		{ name: '耳机', icon: 'headphones' },
+		{ name: '相机', icon: 'photo_camera' }
+	],
+	'图书教材': [
+		{ name: '全部', icon: 'apps' },
+		{ name: '教材', icon: 'book' },
+		{ name: '小说', icon: 'auto_stories' },
+		{ name: '文学', icon: 'history_edu' },
+		{ name: '考研', icon: 'school' }
+	],
+	'美妆护肤': [
+		{ name: '全部', icon: 'apps' },
+		{ name: '水乳', icon: 'water_drop' },
+		{ name: '彩妆', icon: 'face_retouching_natural' },
+		{ name: '面膜', icon: 'masks' },
+		{ name: '精华', icon: 'science' }
+	],
+	'潮鞋服饰': [
+		{ name: '全部', icon: 'apps' },
+		{ name: '男装', icon: 'man' },
+		{ name: '女装', icon: 'woman' },
+		{ name: '球鞋', icon: 'snowshoeing' },
+		{ name: '配饰', icon: 'watch' }
+	],
+	'运动户外': [
+		{ name: '全部', icon: 'apps' },
+		{ name: '骑行', icon: 'pedal_bike' },
+		{ name: '露营', icon: 'camping' },
+		{ name: '健身', icon: 'fitness_center' },
+		{ name: '球类', icon: 'sports_basketball' }
+	]
+};
+
 export default {
 	components: {
 		ProductCard,
@@ -75,14 +114,7 @@ export default {
 			categoryName: '手机数码',
 			isScrolled: false,
 			activeSubIndex: 0,
-			subcategories: [
-				{ name: '全部', icon: 'apps' },
-				{ name: '手机', icon: 'smartphone' },
-				{ name: '平板', icon: 'tablet_mac' },
-				{ name: '电脑', icon: 'laptop_mac' },
-				{ name: '耳机', icon: 'headphones' },
-				{ name: '相机', icon: 'photo_camera' }
-			],
+			subcategories: categoryMap['手机数码'],
 			mockProducts: [
 				{
 					title: 'iPhone 15 Pro 256G 钛金属 官换全新',
@@ -116,6 +148,15 @@ export default {
 	onLoad(options) {
 		if (options.type) {
 			this.categoryName = options.type;
+			
+			// Dynamically set subcategories based on category
+			if (categoryMap[options.type]) {
+				this.subcategories = categoryMap[options.type];
+			} else {
+				// Default subcategories if not in map
+				this.subcategories = [{ name: '全部', icon: 'apps' }];
+			}
+			
 			if (options.type !== '手机数码') {
 				// Mock empty state for other categories
 				this.mockProducts = [];
