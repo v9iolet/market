@@ -178,7 +178,7 @@ export default {
 - Create: `market-frontend/pages/messages/notices.vue`
 - Modify: `market-frontend/pages.json`
 
-- [ ] **Step 1: Write notices UI component**
+- [x] **Step 1: Write notices UI component**
 
 ```vue
 <template>

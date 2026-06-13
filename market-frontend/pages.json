@@ -73,6 +73,13 @@
 				"navigationBarTitleText": "互动消息",
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"path": "pages/messages/notices",
+			"style": {
+				"navigationBarTitleText": "通知消息",
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"globalStyle": {
