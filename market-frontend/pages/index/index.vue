@@ -41,31 +41,31 @@
 				<scroll-view scroll-x class="category-scroll hide-scrollbar">
 					<view class="category-grid">
 						<!-- Row 1 -->
-						<view class="category-item active-scale">
+						<view class="category-item active-scale" @click="goToCategory('手机数码')">
 							<view class="icon-wrapper">
 								<text class="material-symbols-outlined text-primary">smartphone</text>
 							</view>
 							<text class="category-label">手机数码</text>
 						</view>
-						<view class="category-item active-scale">
+						<view class="category-item active-scale" @click="goToCategory('潮鞋服饰')">
 							<view class="icon-wrapper">
 								<text class="material-symbols-outlined text-primary">checkroom</text>
 							</view>
 							<text class="category-label">潮鞋服饰</text>
 						</view>
-						<view class="category-item active-scale">
+						<view class="category-item active-scale" @click="goToCategory('图书教材')">
 							<view class="icon-wrapper">
 								<text class="material-symbols-outlined text-primary">menu_book</text>
 							</view>
 							<text class="category-label">图书教材</text>
 						</view>
-						<view class="category-item active-scale">
+						<view class="category-item active-scale" @click="goToCategory('运动户外')">
 							<view class="icon-wrapper">
 								<text class="material-symbols-outlined text-primary">fitness_center</text>
 							</view>
 							<text class="category-label">运动户外</text>
 						</view>
-						<view class="category-item active-scale">
+						<view class="category-item active-scale" @click="goToCategory('美妆护肤')">
 							<view class="icon-wrapper">
 								<text class="material-symbols-outlined text-primary">face_6</text>
 							</view>
@@ -73,31 +73,31 @@
 						</view>
 						
 						<!-- Row 2 -->
-						<view class="category-item active-scale">
+						<view class="category-item active-scale" @click="goToCategory('文玩收藏')">
 							<view class="icon-wrapper">
 								<text class="material-symbols-outlined text-primary">diamond</text>
 							</view>
 							<text class="category-label">文玩收藏</text>
 						</view>
-						<view class="category-item active-scale">
+						<view class="category-item active-scale" @click="goToCategory('乐器器械')">
 							<view class="icon-wrapper">
 								<text class="material-symbols-outlined text-primary">piano</text>
 							</view>
 							<text class="category-label">乐器器械</text>
 						</view>
-						<view class="category-item active-scale">
+						<view class="category-item active-scale" @click="goToCategory('游戏装备')">
 							<view class="icon-wrapper">
 								<text class="material-symbols-outlined text-primary">sports_esports</text>
 							</view>
 							<text class="category-label">游戏装备</text>
 						</view>
-						<view class="category-item active-scale">
+						<view class="category-item active-scale" @click="goToCategory('办公文具')">
 							<view class="icon-wrapper">
 								<text class="material-symbols-outlined text-primary">edit_note</text>
 							</view>
 							<text class="category-label">办公文具</text>
 						</view>
-						<view class="category-item active-scale">
+						<view class="category-item active-scale" @click="goToCategory('全部分类')">
 							<view class="icon-wrapper">
 								<text class="material-symbols-outlined text-primary">apps</text>
 							</view>
@@ -218,6 +218,9 @@
 			},
 			goDetail() {
 				uni.navigateTo({ url: '/pages/detail/detail' });
+			},
+			goToCategory(name) {
+				uni.navigateTo({ url: '/pages/category-zone/category-zone?type=' + name });
 			}
 		}
 	}
