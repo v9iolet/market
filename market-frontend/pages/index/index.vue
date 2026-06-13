@@ -125,106 +125,7 @@
 
 			<!-- Product Waterfall -->
 			<view class="product-waterfall">
-				<!-- Card 1: iPhone -->
-				<view class="product-card active-scale" @click="goDetail">
-					<view class="image-wrapper">
-						<image class="product-img" mode="aspectFill" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiq42KCbumLf_PGZ00EXlvMIdbSec5JAmbRx_eqOJhP1KGlKt_a3t7aj9YOUzHlY6d_w7gnFQxw7Oy7aZ5-mKWg7yvJCdSkSQJb_HNsL1GQydeisa0bBJxjY13bY_92IcuZph2umqcfpcyjCWE-U6iS1NjmYmLFx3KqUfhYgeuqNoo6_WqqiAPD0F2oM3AvlczLIFny3BRgLp_B5VzqG2Hhyh6O_jFBSSnG600vmPbi3FcbYdGTVYHDGxYaYd563fNwS0yzjecwmLx"></image>
-						<view class="condition-badge">99新</view>
-					</view>
-					<view class="product-info">
-						<text class="product-title">iPhone 15 Pro 256G 钛金属 官换全新</text>
-						<view class="price-row">
-							<text class="current-price">¥5899</text>
-							<text class="original-price">¥8999</text>
-						</view>
-						<view class="seller-row">
-							<view class="seller-info">
-								<image class="avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCV9F8O2klRKszo6zXbHBzCyzxOoqyP4SwEYpbbf2kFCtMIOp-koWw-UCVULtcnvEwVmQjJDG13_KOKjGLo-AN7jXusN2mA5CFcCZSXOoJYPxJXiMU7DP2aan_s0DX1E12pdCECM3yo1B34QkNKVk57AdQASf78K4q5EZS-JiDSWN7gkDjLkHULI8lYeOPhGtZ2yZv3LAGnIMjWpjd_3USnnK1WgSANJjqD5Zcld1CtK1AVkdi8KkoYBMCUq0B5l26Mx6eGUmCyn13a"></image>
-								<view class="seller-meta">
-									<text class="seller-name">林小姐</text>
-									<text class="seller-loc">上海·静安</text>
-								</view>
-							</view>
-							<text class="material-symbols-outlined icon-heart">favorite</text>
-						</view>
-					</view>
-				</view>
-
-				<!-- Card 2: MacBook -->
-				<view class="product-card active-scale" @click="goDetail">
-					<view class="image-wrapper">
-						<image class="product-img" mode="aspectFill" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEWT3fvAl3jhzszqPW7UoW0Mh9gf0cyRZ0LI23QG_vocaoBcID1C5CxJhMCZKuv-LkSfNWW-AM2A3wM9PJUssuFXmD9bpfKgi8PpBToDUP3uXkcaH3DR-2102B_gcKvcfLJ78qV5MKnTfps4pl-Ysje2DJiwmh8XK_jdzDaHq146B9crasADoIu3u9fgqtACQztwfLBRpWWCzs-mPEEJRJLTS8CscEEEABJC1Bi6EjZWFUr7dVLL2gvFFzagMsKV4Kj3-j3IKBiox9"></image>
-						<view class="condition-badge">全新</view>
-					</view>
-					<view class="product-info">
-						<text class="product-title">MacBook Air 13 M3 16G 512G 银色</text>
-						<view class="price-row">
-							<text class="current-price">¥7299</text>
-							<text class="original-price">¥9499</text>
-						</view>
-						<view class="seller-row">
-							<view class="seller-info">
-								<view class="avatar avatar-placeholder">
-									<text class="material-symbols-outlined">person</text>
-								</view>
-								<view class="seller-meta">
-									<text class="seller-name">Apple极客</text>
-									<text class="seller-loc">北京·朝阳</text>
-								</view>
-							</view>
-							<text class="material-symbols-outlined icon-heart">favorite</text>
-						</view>
-					</view>
-				</view>
-
-				<!-- Card 3: Shoes -->
-				<view class="product-card active-scale" @click="goDetail">
-					<view class="image-wrapper">
-						<image class="product-img" mode="aspectFill" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-84dYRmdRu3fejykvEl3GYDz2VdkKQBkkqaMgW--dRYIsEc0omtbSMyV0_y2cTlLDSlBMdGSQ_GT5eMKIMEFem4uPI8G5TmRNm0yI5JbYg-EdctXVikXSMrN3V6-UfUNAo1Vg5v9zRsg2ZvovtNO5JOPSSUJHOM5_hay8ASMLvLHnFyPz7qzUggaPRHP-iFRYCTMMRyd7gPhKkTfi-GvyuLYfIRZEt6tJw22lfrM8_M22_Km0e1uJjgDQu91GsgUmB_wi3ITGOAw5"></image>
-						<view class="condition-badge">99新</view>
-					</view>
-					<view class="product-info">
-						<text class="product-title">Air Jordan 1 Retro High OG Chicago</text>
-						<view class="price-row">
-							<text class="current-price">¥2450</text>
-							<text class="original-price">¥3299</text>
-						</view>
-						<view class="seller-row">
-							<view class="seller-info">
-								<view class="avatar avatar-placeholder"></view>
-								<view class="seller-meta">
-									<text class="seller-name">SneakerHead</text>
-									<text class="seller-loc">广州·天河</text>
-								</view>
-							</view>
-							<text class="material-symbols-outlined icon-heart heart-filled" style="color: #ba1a1a;">favorite</text>
-						</view>
-					</view>
-				</view>
-
-				<!-- Card 4: Camera -->
-				<view class="product-card active-scale" @click="goDetail">
-					<view class="image-wrapper">
-						<image class="product-img" mode="aspectFill" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-GBth_O6vwbFNtAtlaWMdOo5usGp-d5IxXEZUHFPuM9Sfbunj58ssxoRanO1ImfFffhlndmq1Z-v73mnxDwor86zEmLOrKm_doSfGphMDsNCniiwzBiKkOPXmsaLsW7cUQoVqJ7ET-4iMxxqSZ_jUXf2axftbqeyH7VXLRuqOKx4Qvg5zjZ1mGnKmvLeYtwnT8VmQ_TybmwwL5myeWgvurnj0H25xoetb5D5SmL9mXmVjra3jEp2grhw4xq3A4KZoqHjNc-wUTYJx"></image>
-						<view class="condition-badge">95新</view>
-					</view>
-					<view class="product-info">
-						<text class="product-title">Sony A7M4 全画幅微单 仅快门2k</text>
-						<view class="price-row">
-							<text class="current-price">¥12800</text>
-						</view>
-						<view class="seller-row">
-							<view class="seller-info">
-								<view class="avatar avatar-placeholder"></view>
-								<view class="seller-meta">
-									<text class="seller-name">摄影师老张</text>
-									<text class="seller-loc">杭州·西湖</text>
-								</view>
-							</view>
-							<text class="material-symbols-outlined icon-heart">favorite</text>
-						</view>
-					</view>
-				</view>
+				<ProductCard v-for="(item, index) in mockProducts" :key="index" :product="item" />
 			</view>
 
 			<!-- Loading Indicator -->
@@ -244,15 +145,71 @@
 
 <script>
 	import CustomTabBar from '@/components/CustomTabBar/CustomTabBar.vue';
+	import ProductCard from '@/components/ProductCard/ProductCard.vue';
 
 	export default {
 		components: {
-			CustomTabBar
+			CustomTabBar,
+			ProductCard
 		},
 		data() {
 			return {
 				isScrolled: false,
-				isSearchFocused: false
+				isSearchFocused: false,
+				mockProducts: [
+					{
+						title: 'iPhone 15 Pro 256G 钛金属 官换全新',
+						price: '5899',
+						originalPrice: '8999',
+						image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAiq42KCbumLf_PGZ00EXlvMIdbSec5JAmbRx_eqOJhP1KGlKt_a3t7aj9YOUzHlY6d_w7gnFQxw7Oy7aZ5-mKWg7yvJCdSkSQJb_HNsL1GQydeisa0bBJxjY13bY_92IcuZph2umqcfpcyjCWE-U6iS1NjmYmLFx3KqUfhYgeuqNoo6_WqqiAPD0F2oM3AvlczLIFny3BRgLp_B5VzqG2Hhyh6O_jFBSSnG600vmPbi3FcbYdGTVYHDGxYaYd563fNwS0yzjecwmLx',
+						condition: '99新',
+						isLiked: false,
+						seller: {
+							name: '林小姐',
+							location: '上海·静安',
+							avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCV9F8O2klRKszo6zXbHBzCyzxOoqyP4SwEYpbbf2kFCtMIOp-koWw-UCVULtcnvEwVmQjJDG13_KOKjGLo-AN7jXusN2mA5CFcCZSXOoJYPxJXiMU7DP2aan_s0DX1E12pdCECM3yo1B34QkNKVk57AdQASf78K4q5EZS-JiDSWN7gkDjLkHULI8lYeOPhGtZ2yZv3LAGnIMjWpjd_3USnnK1WgSANJjqD5Zcld1CtK1AVkdi8KkoYBMCUq0B5l26Mx6eGUmCyn13a'
+						}
+					},
+					{
+						title: 'MacBook Air 13 M3 16G 512G 银色',
+						price: '7299',
+						originalPrice: '9499',
+						image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCEWT3fvAl3jhzszqPW7UoW0Mh9gf0cyRZ0LI23QG_vocaoBcID1C5CxJhMCZKuv-LkSfNWW-AM2A3wM9PJUssuFXmD9bpfKgi8PpBToDUP3uXkcaH3DR-2102B_gcKvcfLJ78qV5MKnTfps4pl-Ysje2DJiwmh8XK_jdzDaHq146B9crasADoIu3u9fgqtACQztwfLBRpWWCzs-mPEEJRJLTS8CscEEEABJC1Bi6EjZWFUr7dVLL2gvFFzagMsKV4Kj3-j3IKBiox9',
+						condition: '全新',
+						isLiked: false,
+						seller: {
+							name: 'Apple极客',
+							location: '北京·朝阳',
+							avatar: ''
+						}
+					},
+					{
+						title: 'Air Jordan 1 Retro High OG Chicago',
+						price: '2450',
+						originalPrice: '3299',
+						image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD-84dYRmdRu3fejykvEl3GYDz2VdkKQBkkqaMgW--dRYIsEc0omtbSMyV0_y2cTlLDSlBMdGSQ_GT5eMKIMEFem4uPI8G5TmRNm0yI5JbYg-EdctXVikXSMrN3V6-UfUNAo1Vg5v9zRsg2ZvovtNO5JOPSSUJHOM5_hay8ASMLvLHnFyPz7qzUggaPRHP-iFRYCTMMRyd7gPhKkTfi-GvyuLYfIRZEt6tJw22lfrM8_M22_Km0e1uJjgDQu91GsgUmB_wi3ITGOAw5',
+						condition: '99新',
+						isLiked: true,
+						seller: {
+							name: 'SneakerHead',
+							location: '广州·天河',
+							avatar: ''
+						}
+					},
+					{
+						title: 'Sony A7M4 全画幅微单 仅快门2k',
+						price: '12800',
+						originalPrice: '',
+						image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB-GBth_O6vwbFNtAtlaWMdOo5usGp-d5IxXEZUHFPuM9Sfbunj58ssxoRanO1ImfFffhlndmq1Z-v73mnxDwor86zEmLOrKm_doSfGphMDsNCniiwzBiKkOPXmsaLsW7cUQoVqJ7ET-4iMxxqSZ_jUXf2axftbqeyH7VXLRuqOKx4Qvg5zjZ1mGnKmvLeYtwnT8VmQ_TybmwwL5myeWgvurnj0H25xoetb5D5SmL9mXmVjra3jEp2grhw4xq3A4KZoqHjNc-wUTYJx',
+						condition: '95新',
+						isLiked: false,
+						seller: {
+							name: '摄影师老张',
+							location: '杭州·西湖',
+							avatar: ''
+						}
+					}
+				]
 			}
 		},
 		methods: {
@@ -543,142 +500,6 @@
 		grid-template-columns: repeat(2, 1fr);
 		column-gap: $spacing-gutter;
 		row-gap: $spacing-stack-md;
-
-		.product-card {
-			background-color: $color-surface-container-lowest;
-			border-radius: 32rpx;
-			overflow: hidden;
-			box-shadow: 0 40rpx 50rpx -24rpx rgba(0, 0, 0, 0.25);
-			border: 2rpx solid rgba(197, 198, 205, 0.1);
-			display: flex;
-			flex-direction: column;
-
-			.image-wrapper {
-				position: relative;
-				width: 100%;
-				padding-top: 100%; /* aspect-square */
-
-				.product-img {
-					position: absolute;
-					top: 0;
-					left: 0;
-					width: 100%;
-					height: 100%;
-					object-fit: cover;
-				}
-
-				.condition-badge {
-					position: absolute;
-					top: 16rpx;
-					left: 16rpx;
-					padding: 4rpx 16rpx;
-					background-color: rgba(0, 108, 73, 0.9);
-					backdrop-filter: blur(8rpx);
-					border-radius: 16rpx;
-					color: $color-on-secondary;
-					font-size: 20rpx;
-					font-weight: 700;
-				}
-			}
-
-			.product-info {
-				padding: 24rpx;
-
-				.product-title {
-					font-size: 28rpx;
-					font-weight: 700;
-					color: $color-on-surface;
-					display: -webkit-box;
-					-webkit-line-clamp: 2;
-					-webkit-box-orient: vertical;
-					overflow: hidden;
-					line-height: 1.3;
-					height: 72rpx;
-				}
-
-				.price-row {
-					margin-top: 16rpx;
-					display: flex;
-					align-items: baseline;
-					gap: 8rpx;
-
-					.current-price {
-						color: $color-primary;
-						font-size: 44rpx;
-						line-height: 56rpx;
-						letter-spacing: -0.01em;
-						font-weight: 700;
-					}
-
-					.original-price {
-						color: rgba(69, 71, 76, 0.4);
-						font-size: 22rpx;
-						text-decoration: line-through;
-					}
-				}
-
-				.seller-row {
-					margin-top: 24rpx;
-					display: flex;
-					align-items: center;
-					justify-content: space-between;
-
-					.seller-info {
-						display: flex;
-						align-items: center;
-						gap: 12rpx;
-
-						.avatar {
-							width: 40rpx;
-							height: 40rpx;
-							border-radius: 50%;
-							background-color: $color-surface-variant;
-							display: flex;
-							align-items: center;
-							justify-content: center;
-
-							.material-symbols-outlined {
-								font-size: 28rpx;
-								color: $color-outline;
-							}
-						}
-
-						.seller-meta {
-							display: flex;
-							flex-direction: column;
-
-							.seller-name {
-								font-size: 20rpx;
-								font-weight: 700;
-								color: $color-on-surface;
-								line-height: 1;
-							}
-
-							.seller-loc {
-								font-size: 18rpx;
-								color: rgba(69, 71, 76, 0.6);
-								margin-top: 4rpx;
-							}
-						}
-					}
-
-					.icon-heart {
-						font-size: 36rpx;
-						color: $color-outline;
-						cursor: pointer;
-						transition: color 0.2s ease;
-
-						&:hover {
-							color: $color-error;
-						}
-
-						&.heart-filled {
-							font-variation-settings: 'FILL' 1;
-						}
-					}
-				}
-			}
-		}
 	}
 
 	/* Loading Indicator */
