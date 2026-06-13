@@ -6,7 +6,7 @@ base-ref: 010738b33095c5814494f62d06359fa7f7bf25e3
 
 # 个人资料编辑页 Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** 实现一个纯前端 Mock 的个人资料编辑页面，允许用户修改头像、昵称和个人简介。
 
@@ -21,7 +21,7 @@ base-ref: 010738b33095c5814494f62d06359fa7f7bf25e3
 **Files:**
 - Create: `market-frontend/pages/profile/edit.vue`
 
-- [ ] **Step 1: 编写 edit.vue 基础结构**
+- [x] **Step 1: 编写 edit.vue 基础结构**
 
 ```vue
 <template>
@@ -49,9 +49,9 @@ base-ref: 010738b33095c5814494f62d06359fa7f7bf25e3
 </template>
 ```
 
-- [ ] **Step 2: 添加基础样式**
+- [x] **Step 2: 添加基础样式**
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add market-frontend/pages/profile/edit.vue
@@ -63,7 +63,7 @@ git commit -m "feat(profile): add base layout for profile edit page"
 **Files:**
 - Modify: `market-frontend/pages.json`
 
-- [ ] **Step 1: 在 pages.json 注册 edit 页面**
+- [x] **Step 1: 在 pages.json 注册 edit 页面**
 
 ```json
 		{
@@ -75,7 +75,7 @@ git commit -m "feat(profile): add base layout for profile edit page"
 		}
 ```
 
-- [ ] **Step 2: Commit**
+- [x] **Step 2: Commit**
 
 ```bash
 git add market-frontend/pages.json
@@ -87,15 +87,15 @@ git commit -m "feat(profile): register edit page route"
 **Files:**
 - Modify: `market-frontend/pages/profile/profile.vue`
 
-- [ ] **Step 1: 增加默认状态并关联回显**
+- [x] **Step 1: 增加默认状态并关联回显**
 
 读取 `uni.getStorageSync('userProfile')`，若无则给默认头像和昵称。
 
-- [ ] **Step 2: 为编辑按钮添加跳转**
+- [x] **Step 2: 为编辑按钮添加跳转**
 
 `@click="goToEdit"` -> `uni.navigateTo({ url: '/pages/profile/edit' })`
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add market-frontend/pages/profile/profile.vue
@@ -107,19 +107,19 @@ git commit -m "feat(profile): add navigation to edit page and state load"
 **Files:**
 - Modify: `market-frontend/pages/profile/edit.vue`
 
-- [ ] **Step 1: 添加数据加载逻辑 (onLoad/onShow)**
+- [x] **Step 1: 添加数据加载逻辑 (onLoad/onShow)**
 
 读取缓存的资料数据并填充到表单中。
 
-- [ ] **Step 2: 实现头像选择 (changeAvatar)**
+- [x] **Step 2: 实现头像选择 (changeAvatar)**
 
 调用 `uni.chooseImage({ count: 1 })` 将选中图片的临时路径赋值给 `profile.avatar`。
 
-- [ ] **Step 3: 实现保存逻辑 (handleSave)**
+- [x] **Step 3: 实现保存逻辑 (handleSave)**
 
 将当前表单内容 `uni.setStorageSync('userProfile', this.profile)`。弹窗 `uni.showToast({title: '保存成功'})`，然后延时 `uni.navigateBack()`。
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add market-frontend/pages/profile/edit.vue
