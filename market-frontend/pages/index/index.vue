@@ -5,14 +5,13 @@
 			<view class="header-content">
 				<view class="search-section">
 					<text class="material-symbols-outlined text-primary">center_focus_weak</text>
-					<view class="search-bar" :class="{'search-bar-focused': isSearchFocused}">
+					<view class="search-bar" @click="goToSearch">
 						<text class="material-symbols-outlined text-outline icon-search">search</text>
 						<input 
 							class="search-input" 
 							placeholder="iPhone 15 Pro..." 
 							type="text" 
-							@focus="isSearchFocused = true"
-							@blur="isSearchFocused = false"
+							disabled
 						/>
 					</view>
 				</view>
@@ -221,6 +220,9 @@
 			},
 			goToCategory(name) {
 				uni.navigateTo({ url: '/pages/category-zone/category-zone?type=' + name });
+			},
+			goToSearch() {
+				uni.navigateTo({ url: '/pages/search/search' });
 			}
 		}
 	}

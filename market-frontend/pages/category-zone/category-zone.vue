@@ -7,7 +7,7 @@
 					<text class="material-symbols-outlined text-outline">arrow_back_ios_new</text>
 				</view>
 				<text class="title">{{ categoryName }}</text>
-				<view class="search-btn active-scale">
+				<view class="search-btn active-scale" @click="goToSearch">
 					<text class="material-symbols-outlined text-outline">search</text>
 				</view>
 			</view>
@@ -135,6 +135,9 @@ export default {
 		},
 		selectSubcategory(index) {
 			this.activeSubIndex = index;
+		},
+		goToSearch() {
+			uni.navigateTo({ url: '/pages/search/search' });
 		}
 	}
 }
