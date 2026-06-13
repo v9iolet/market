@@ -2,6 +2,7 @@
 change: unlogged-profile
 design-doc: docs/superpowers/specs/2026-06-13-unlogged-profile-design.md
 base-ref: 84f005235999b0eebe20564171fe8d9104f4eb61
+archived-with: unlogged-profile
 ---
 
 # 个人主页与登录流程前端架构 Implementation Plan
