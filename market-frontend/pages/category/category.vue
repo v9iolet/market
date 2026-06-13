@@ -7,7 +7,7 @@
 					<text class="material-symbols-outlined icon">menu</text>
 				</view>
 				<text class="header-title">分类</text>
-				<view class="icon-btn active-scale">
+				<view class="icon-btn active-scale" @click="goToSearch">
 					<text class="material-symbols-outlined icon">search</text>
 				</view>
 			</view>
@@ -90,7 +90,9 @@
 			}
 		},
 		methods: {
-			
+			goToSearch() {
+				uni.navigateTo({ url: '/pages/search/search' });
+			}
 		}
 	}
 </script>
