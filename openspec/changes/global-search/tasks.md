@@ -4,5 +4,5 @@
 - [x] 4. 在 `pages.json` 中注册 `/pages/search/search` 路由。
 - [x] 5. 修改 `pages/index/index.vue` 顶部搜索框交互，点击后跳转至 `search.vue`。
 - [x] 6. 修改 `pages/category-zone/category-zone.vue` 顶部搜索框交互，点击后跳转至 `search.vue`。
-- [ ] 7. 进行界面的走查与验证搜索和过滤功能是否正确。
+-[x] 7. 进行界面的走查与验证搜索和过滤功能是否正确。
 <!-- review skipped: subagent unavailable -->
