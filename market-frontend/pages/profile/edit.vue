@@ -58,17 +58,43 @@
 			}
 		},
 		onLoad() {
-			// 将在 Task 4 实现
+			const storedProfile = uni.getStorageSync('userProfile');
+			if (storedProfile) {
+				this.profile = { ...storedProfile };
+			}
 		},
 		methods: {
 			goBack() {
 				uni.navigateBack();
 			},
 			changeAvatar() {
-				// 将在 Task 4 实现
+				uni.chooseImage({
+					count: 1,
+					sizeType: ['compressed'],
+					sourceType: ['album', 'camera'],
+					success: (res) => {
+						this.profile.avatar = res.tempFilePaths[0];
+					}
+				});
 			},
 			handleSave() {
-				// 将在 Task 4 实现
+				if (!this.profile.nickname.trim()) {
+					uni.showToast({
+						title: '昵称不能为空',
+						icon: 'none'
+					});
+					return;
+				}
+				
+				uni.setStorageSync('userProfile', this.profile);
+				uni.showToast({
+					title: '保存成功',
+					icon: 'success'
+				});
+				
+				setTimeout(() => {
+					uni.navigateBack();
+				}, 1000);
 			}
 		}
 	}
