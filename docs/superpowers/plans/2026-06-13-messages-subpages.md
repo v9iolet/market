@@ -106,7 +106,7 @@ export default {
 - Create: `market-frontend/pages/messages/interactions.vue`
 - Modify: `market-frontend/pages.json`
 
-- [ ] **Step 1: Write interactions UI component**
+- [x] **Step 1: Write interactions UI component**
 (A list layout featuring a right-side thumbnail for the post/item being interacted with).
 
 ```vue

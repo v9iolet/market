@@ -66,6 +66,13 @@
 				"navigationBarTitleText": "交易物流",
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"path": "pages/messages/interactions",
+			"style": {
+				"navigationBarTitleText": "互动消息",
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"globalStyle": {
