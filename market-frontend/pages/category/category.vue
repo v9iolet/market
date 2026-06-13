@@ -16,32 +16,14 @@
 		<view class="main-content">
 			<!-- Sidebar (Left Column) -->
 			<scroll-view scroll-y class="sidebar hide-scrollbar">
-				<view class="sidebar-item active">
-					<text class="item-text">手机数码</text>
-				</view>
-				<view class="sidebar-item">
-					<text class="item-text">奢品腕表</text>
-				</view>
-				<view class="sidebar-item">
-					<text class="item-text">美妆护肤</text>
-				</view>
-				<view class="sidebar-item">
-					<text class="item-text">潮鞋服饰</text>
-				</view>
-				<view class="sidebar-item">
-					<text class="item-text">潮玩盲盒</text>
-				</view>
-				<view class="sidebar-item">
-					<text class="item-text">运动户外</text>
-				</view>
-				<view class="sidebar-item">
-					<text class="item-text">乐器教辅</text>
-				</view>
-				<view class="sidebar-item">
-					<text class="item-text">家居家电</text>
-				</view>
-				<view class="sidebar-item">
-					<text class="item-text">图书教材</text>
+				<view 
+					class="sidebar-item" 
+					v-for="(category, index) in categories" 
+					:key="index"
+					:class="{'active': activeIndex === index}"
+					@click="activeIndex = index"
+				>
+					<text class="item-text">{{ category }}</text>
 				</view>
 			</scroll-view>
 
@@ -56,76 +38,21 @@
 					</view>
 				</view>
 
-				<!-- Subcategory Group 1 -->
-				<view class="subcategory-group">
+				<!-- Dynamic Subcategories -->
+				<view class="subcategory-group" v-if="currentSubcategories && currentSubcategories.length > 0">
 					<view class="group-header">
-						<text class="group-title">手机数码</text>
-						<text class="material-symbols-outlined icon-more">chevron_right</text>
+						<text class="group-title">{{ categories[activeIndex] }}分类</text>
 					</view>
 					<view class="grid-container">
-						<view class="grid-item active-scale">
+						<view 
+							class="grid-item active-scale" 
+							v-for="(sub, subIdx) in currentSubcategories" 
+							:key="subIdx"
+						>
 							<view class="icon-wrapper">
-								<image class="img-icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkYY-jPvsnciTxmVp8IEvvkTRLDnoIXkvNwkbSmqXJjlScOHSzLT-h-tKz0BEuvZnlocnagpRcrGPH66edQRXAmnRyO2k-o-q3E6T6BPHp6qJ3JmHa5d8lfXDzNRkQ_2hY2laRjcHnhmheCyKAt1b9UXxcUy6XZ_tYLYct0b19l2s_7XfNei-feXzKEUrf33ydmEzMcxo2UXPrqXUVwqt22ncBOXOERDNriCVFlZ78pduWCrUze9sngVvHMcncb0Tlau3k7yVMh3hE" mode="aspectFit"></image>
+								<text class="material-symbols-outlined icon">{{ sub.icon || 'apps' }}</text>
 							</view>
-							<text class="item-label">iPhone</text>
-						</view>
-						<view class="grid-item active-scale">
-							<view class="icon-wrapper">
-								<text class="material-symbols-outlined icon">tablet_mac</text>
-							</view>
-							<text class="item-label">iPad</text>
-						</view>
-						<view class="grid-item active-scale">
-							<view class="icon-wrapper">
-								<text class="material-symbols-outlined icon">laptop_mac</text>
-							</view>
-							<text class="item-label">MacBook</text>
-						</view>
-						<view class="grid-item active-scale">
-							<view class="icon-wrapper">
-								<text class="material-symbols-outlined icon">android</text>
-							</view>
-							<text class="item-label">Android</text>
-						</view>
-						<view class="grid-item active-scale">
-							<view class="icon-wrapper">
-								<text class="material-symbols-outlined icon">watch</text>
-							</view>
-							<text class="item-label">智能手表</text>
-						</view>
-						<view class="grid-item active-scale">
-							<view class="icon-wrapper">
-								<text class="material-symbols-outlined icon">sports_esports</text>
-							</view>
-							<text class="item-label">游戏机</text>
-						</view>
-					</view>
-				</view>
-
-				<!-- Subcategory Group 2 -->
-				<view class="subcategory-group">
-					<view class="group-header">
-						<text class="group-title">精选数码</text>
-						<text class="material-symbols-outlined icon-more">chevron_right</text>
-					</view>
-					<view class="grid-container">
-						<view class="grid-item active-scale">
-							<view class="icon-wrapper">
-								<text class="material-symbols-outlined icon">headphones</text>
-							</view>
-							<text class="item-label">耳机音响</text>
-						</view>
-						<view class="grid-item active-scale">
-							<view class="icon-wrapper">
-								<text class="material-symbols-outlined icon">photo_camera</text>
-							</view>
-							<text class="item-label">摄影摄像</text>
-						</view>
-						<view class="grid-item active-scale">
-							<view class="icon-wrapper">
-								<text class="material-symbols-outlined icon">memory</text>
-							</view>
-							<text class="item-label">电脑配件</text>
+							<text class="item-label">{{ sub.name }}</text>
 						</view>
 					</view>
 				</view>
@@ -141,13 +68,86 @@
 <script>
 	import CustomTabBar from '@/components/CustomTabBar/CustomTabBar.vue';
 
+	const categoryMap = {
+		'手机数码': [
+			{ name: '全部', icon: 'apps' },
+			{ name: '手机', icon: 'smartphone' },
+			{ name: '平板', icon: 'tablet_mac' },
+			{ name: '电脑', icon: 'laptop_mac' },
+			{ name: '耳机', icon: 'headphones' },
+			{ name: '相机', icon: 'photo_camera' }
+		],
+		'图书教材': [
+			{ name: '全部', icon: 'apps' },
+			{ name: '教材', icon: 'book' },
+			{ name: '小说', icon: 'auto_stories' },
+			{ name: '文学', icon: 'history_edu' },
+			{ name: '考研', icon: 'school' }
+		],
+		'美妆护肤': [
+			{ name: '全部', icon: 'apps' },
+			{ name: '水乳', icon: 'water_drop' },
+			{ name: '彩妆', icon: 'face_retouching_natural' },
+			{ name: '面膜', icon: 'masks' },
+			{ name: '精华', icon: 'science' }
+		],
+		'潮鞋服饰': [
+			{ name: '全部', icon: 'apps' },
+			{ name: '男装', icon: 'man' },
+			{ name: '女装', icon: 'woman' },
+			{ name: '球鞋', icon: 'snowshoeing' },
+			{ name: '配饰', icon: 'watch' }
+		],
+		'运动户外': [
+			{ name: '全部', icon: 'apps' },
+			{ name: '骑行', icon: 'pedal_bike' },
+			{ name: '露营', icon: 'camping' },
+			{ name: '健身', icon: 'fitness_center' },
+			{ name: '球类', icon: 'sports_basketball' }
+		],
+		'文玩收藏': [
+			{ name: '全部', icon: 'apps' },
+			{ name: '玉器', icon: 'diamond' },
+			{ name: '字画', icon: 'brush' },
+			{ name: '钱币', icon: 'payments' }
+		],
+		'乐器器械': [
+			{ name: '全部', icon: 'apps' },
+			{ name: '吉他', icon: 'music_note' },
+			{ name: '钢琴', icon: 'piano' },
+			{ name: '管弦', icon: 'music_note' }
+		],
+		'游戏装备': [
+			{ name: '全部', icon: 'apps' },
+			{ name: '主机', icon: 'sports_esports' },
+			{ name: '卡带', icon: 'sd_card' },
+			{ name: '外设', icon: 'mouse' }
+		],
+		'办公文具': [
+			{ name: '全部', icon: 'apps' },
+			{ name: '笔记本', icon: 'menu_book' },
+			{ name: '笔', icon: 'edit' },
+			{ name: '桌面收纳', icon: 'inventory_2' }
+		]
+	};
+
 	export default {
 		components: {
 			CustomTabBar
 		},
 		data() {
 			return {
-				
+				categories: [
+					'手机数码', '潮鞋服饰', '图书教材', '运动户外', '美妆护肤', 
+					'文玩收藏', '乐器器械', '游戏装备', '办公文具'
+				],
+				activeIndex: 0
+			}
+		},
+		computed: {
+			currentSubcategories() {
+				const category = this.categories[this.activeIndex];
+				return categoryMap[category] || [{ name: '全部', icon: 'apps' }];
 			}
 		},
 		methods: {
