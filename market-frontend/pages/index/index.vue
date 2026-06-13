@@ -110,21 +110,23 @@
 			<view class="filter-section glass-effect">
 				<scroll-view scroll-x class="filter-scroll hide-scrollbar">
 					<view class="filter-tabs">
-						<view class="tab-btn active">
-							<text>推荐</text>
-							<view class="indicator"></view>
+						<view 
+							class="tab-btn" 
+							v-for="(tab, index) in filterTabs" 
+							:key="index"
+							:class="{'active': activeFilterIndex === index}"
+							@click="activeFilterIndex = index"
+						>
+							<text>{{ tab }}</text>
+							<view class="indicator" v-if="activeFilterIndex === index"></view>
 						</view>
-						<view class="tab-btn"><text>最新</text></view>
-						<view class="tab-btn"><text>附近</text></view>
-						<view class="tab-btn"><text>手机</text></view>
-						<view class="tab-btn"><text>电脑</text></view>
 					</view>
 				</scroll-view>
 			</view>
 
 			<!-- Product Waterfall -->
 			<view class="product-waterfall">
-				<ProductCard v-for="(item, index) in mockProducts" :key="index" :product="item" />
+				<ProductCard v-for="(item, index) in filteredProducts" :key="index" :product="item" />
 			</view>
 
 			<!-- Loading Indicator -->
@@ -155,6 +157,9 @@
 			return {
 				isScrolled: false,
 				isSearchFocused: false,
+				filterTabs: ['推荐', '最新', '附近', '手机', '电脑'],
+				activeFilterIndex: 0,
+				userLocation: '上海', // Mock user location for "附近"
 				mockProducts: [
 					{
 						title: 'iPhone 15 Pro 256G 钛金属 官换全新',
@@ -163,6 +168,8 @@
 						image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAiq42KCbumLf_PGZ00EXlvMIdbSec5JAmbRx_eqOJhP1KGlKt_a3t7aj9YOUzHlY6d_w7gnFQxw7Oy7aZ5-mKWg7yvJCdSkSQJb_HNsL1GQydeisa0bBJxjY13bY_92IcuZph2umqcfpcyjCWE-U6iS1NjmYmLFx3KqUfhYgeuqNoo6_WqqiAPD0F2oM3AvlczLIFny3BRgLp_B5VzqG2Hhyh6O_jFBSSnG600vmPbi3FcbYdGTVYHDGxYaYd563fNwS0yzjecwmLx',
 						condition: '99新',
 						isLiked: false,
+						category: '手机',
+						publishTime: 1718000000000,
 						seller: {
 							name: '林小姐',
 							location: '上海·静安',
@@ -176,6 +183,8 @@
 						image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCEWT3fvAl3jhzszqPW7UoW0Mh9gf0cyRZ0LI23QG_vocaoBcID1C5CxJhMCZKuv-LkSfNWW-AM2A3wM9PJUssuFXmD9bpfKgi8PpBToDUP3uXkcaH3DR-2102B_gcKvcfLJ78qV5MKnTfps4pl-Ysje2DJiwmh8XK_jdzDaHq146B9crasADoIu3u9fgqtACQztwfLBRpWWCzs-mPEEJRJLTS8CscEEEABJC1Bi6EjZWFUr7dVLL2gvFFzagMsKV4Kj3-j3IKBiox9',
 						condition: '全新',
 						isLiked: false,
+						category: '电脑',
+						publishTime: 1718100000000,
 						seller: {
 							name: 'Apple极客',
 							location: '北京·朝阳',
@@ -189,6 +198,8 @@
 						image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD-84dYRmdRu3fejykvEl3GYDz2VdkKQBkkqaMgW--dRYIsEc0omtbSMyV0_y2cTlLDSlBMdGSQ_GT5eMKIMEFem4uPI8G5TmRNm0yI5JbYg-EdctXVikXSMrN3V6-UfUNAo1Vg5v9zRsg2ZvovtNO5JOPSSUJHOM5_hay8ASMLvLHnFyPz7qzUggaPRHP-iFRYCTMMRyd7gPhKkTfi-GvyuLYfIRZEt6tJw22lfrM8_M22_Km0e1uJjgDQu91GsgUmB_wi3ITGOAw5',
 						condition: '99新',
 						isLiked: true,
+						category: '潮鞋服饰',
+						publishTime: 1718200000000,
 						seller: {
 							name: 'SneakerHead',
 							location: '广州·天河',
@@ -202,6 +213,8 @@
 						image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB-GBth_O6vwbFNtAtlaWMdOo5usGp-d5IxXEZUHFPuM9Sfbunj58ssxoRanO1ImfFffhlndmq1Z-v73mnxDwor86zEmLOrKm_doSfGphMDsNCniiwzBiKkOPXmsaLsW7cUQoVqJ7ET-4iMxxqSZ_jUXf2axftbqeyH7VXLRuqOKx4Qvg5zjZ1mGnKmvLeYtwnT8VmQ_TybmwwL5myeWgvurnj0H25xoetb5D5SmL9mXmVjra3jEp2grhw4xq3A4KZoqHjNc-wUTYJx',
 						condition: '95新',
 						isLiked: false,
+						category: '相机',
+						publishTime: 1717900000000,
 						seller: {
 							name: '摄影师老张',
 							location: '杭州·西湖',
@@ -209,6 +222,21 @@
 						}
 					}
 				]
+			}
+		},
+		computed: {
+			filteredProducts() {
+				const currentTab = this.filterTabs[this.activeFilterIndex];
+				let products = [...this.mockProducts];
+
+				if (currentTab === '最新') {
+					products.sort((a, b) => b.publishTime - a.publishTime);
+				} else if (currentTab === '附近') {
+					products = products.filter(p => p.seller.location.includes(this.userLocation));
+				} else if (currentTab === '手机' || currentTab === '电脑') {
+					products = products.filter(p => p.category === currentTab);
+				}
+				return products;
 			}
 		},
 		methods: {
