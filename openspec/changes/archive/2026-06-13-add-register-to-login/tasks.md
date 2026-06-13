@@ -1,0 +1,4 @@
+- [x] Add `currentMode` state to `login.vue` ('login' vs 'register')
+- [x] Add mode switching tabs UI to `login.vue` header
+- [x] Add "Confirm Password" field conditionally for register mode
+- [x] Update action button text dynamically and background color to `$color-secondary`

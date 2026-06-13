@@ -1,9 +1,0 @@
-- [x] 在 `uni.scss` 中引入或转换 DESIGN.md 里的颜色、排版等设计 Token。
-- [x] 创建或更新 `/pages/profile/profile.vue`。
-- [x] 1:1 还原未登录状态视图（stitch_ 3 空白头像、提示文字、背景等）。
-- [x] 创建 `/pages/login/login.vue`，并在 `pages.json` 中配置路由。
-- [x] 根据 `stitch_ 4` 1:1 还原登录注册界面的 UI。
-- [x] 实现前端本地登录态（Storage 存取）逻辑，在 profile 的 onShow 中读取并切换视图。
-- [x] 绑定交互：未登录状态点击头像跳转至登录页面。
-- [x] 绑定交互：登录页面点击登录按钮，写入状态并返回。
-- [x] 绑定交互：profile 已登录视图区域新增“退出账号”按钮 UI，并绑定清除状态的事件。
