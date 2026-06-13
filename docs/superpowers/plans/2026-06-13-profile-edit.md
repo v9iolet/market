@@ -2,6 +2,7 @@
 change: profile-edit
 design-doc: docs/superpowers/specs/2026-06-13-profile-edit-design.md
 base-ref: 010738b33095c5814494f62d06359fa7f7bf25e3
+archived-with: 2026-06-13-profile-edit
 ---
 
 # 个人资料编辑页 Implementation Plan
@@ -14,6 +15,7 @@ base-ref: 010738b33095c5814494f62d06359fa7f7bf25e3
 
 **Tech Stack:** uni-app, Vue 2, uni API (chooseImage, storage)
 
+archived-with: 2026-06-13-profile-edit
 ---
 
 ### Task 1: 创建编辑资料页面基础布局

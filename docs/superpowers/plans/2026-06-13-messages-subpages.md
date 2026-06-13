@@ -2,6 +2,7 @@
 change: messages-subpages
 design-doc: docs/superpowers/specs/2026-06-13-messages-subpages-design.md
 base-ref: 943ac4efc49c2cb341cf986bbd732f36632b0ab4
+archived-with: 2026-06-13-messages-subpages
 ---
 
 # Messages Subpages Implementation Plan
@@ -17,6 +18,7 @@ base-ref: 943ac4efc49c2cb341cf986bbd732f36632b0ab4
 ## User Review Required
 该计划将直接修改 `pages.json` 注册路由，并在 `pages/messages/` 目录下新增四个二级页面。页面将完全使用前端模拟数据（Mock Data）并实现独立的交互组件（比如聊天页的快捷回复滚动列表和安全区适配）。请确认这些变更细节。
 
+archived-with: 2026-06-13-messages-subpages
 ---
 
 ### Task 1: 创建物流页面 (Logistics)
@@ -98,6 +100,7 @@ export default {
 ```
 (Add into the `pages` array of `market-frontend/pages.json`)
 
+archived-with: 2026-06-13-messages-subpages
 ---
 
 ### Task 2: 创建互动消息页面 (Interactions)
@@ -170,6 +173,7 @@ export default {
 		}
 ```
 
+archived-with: 2026-06-13-messages-subpages
 ---
 
 ### Task 3: 创建通知消息页面 (Notices)
@@ -244,6 +248,7 @@ export default {
 		}
 ```
 
+archived-with: 2026-06-13-messages-subpages
 ---
 
 ### Task 4: 创建聊天详情页 (Chat Detail)
@@ -353,6 +358,7 @@ export default {
 		}
 ```
 
+archived-with: 2026-06-13-messages-subpages
 ---
 
 ### Task 5: 接入首页导航跳转

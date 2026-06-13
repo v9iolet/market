@@ -2,6 +2,8 @@
 comet_change: profile-edit
 role: technical-design
 canonical_spec: openspec
+archived-with: 2026-06-13-profile-edit
+status: final
 ---
 
 # Design Doc: 个人资料编辑页
