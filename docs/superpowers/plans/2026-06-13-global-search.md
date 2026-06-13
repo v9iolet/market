@@ -2,6 +2,7 @@
 change: global-search
 design-doc: docs/superpowers/specs/2026-06-13-global-search-design.md
 base-ref: 70e3d56bf5064b19c7ddda1cb64ddafef8671f66
+archived-with: 2026-06-13-global-search
 ---
 
 # 全局搜索与消息搜索前端实现计划
