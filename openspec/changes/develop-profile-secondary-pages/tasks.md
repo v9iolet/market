@@ -6,3 +6,5 @@
 - [x] 4. 修改 `login.vue`：在 `onLoad` 获取 `redirect` 参数，并在登录成功后优先执行重定向跳转。
 - [x] 5. 完善 `address` (收货地址) 静态页面及交互。
 - [x] 6. 完善 `published`, `sold`, `bought`, `favorites` 等核心交易二级页面的基本结构或 Mock 数据展示。
+
+<!-- review skipped: skill unavailable -->
