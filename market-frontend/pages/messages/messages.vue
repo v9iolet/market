@@ -147,7 +147,11 @@
 				}
 			},
 			navTo(type) {
-				uni.navigateTo({ url: `/pages/messages/${type}` });
+				if (type === 'logistics') {
+					uni.navigateTo({ url: `/pages/messages/logistics-notices` });
+				} else {
+					uni.navigateTo({ url: `/pages/messages/${type}` });
+				}
 			},
 			navToChat(msg) {
 				uni.navigateTo({ url: `/pages/messages/chat?id=${msg.id}&name=${encodeURIComponent(msg.name)}` });

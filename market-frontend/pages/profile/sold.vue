@@ -9,6 +9,9 @@
     </view>
     
     <view class="content">
+      <view class="mock-order active-scale" style="margin-bottom: 40rpx; padding: 40rpx; background: #fff; border-radius: 20rpx;" @click="goLogistics">
+        <text style="color: #4B6BFE; font-weight: bold;">[测试] 查看该订单物流</text>
+      </view>
       <view class="empty-state">
         <text class="material-symbols-outlined empty-icon">payments</text>
         <text class="empty-text">暂无卖出的订单</text>
@@ -20,6 +23,9 @@
 <script setup>
 const goBack = () => {
   uni.navigateBack();
+};
+const goLogistics = () => {
+  uni.navigateTo({ url: '/pages/order/logistics-detail' });
 };
 </script>
 
