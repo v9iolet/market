@@ -52,3 +52,24 @@ export const orderDemoData = [
     }
   }
 ];
+
+export const logisticsNoticesDemoData = [
+  {
+    id: 'n1',
+    statusTitle: '包裹派送中',
+    time: '2026-06-14 10:30',
+    productImg: '/static/images/demo3.png',
+    expressCompany: '顺丰速运',
+    trackingNo: 'SF1234567890',
+    latestDesc: '顺丰速运：您的快件已到达【深圳市】'
+  },
+  {
+    id: 'n2',
+    statusTitle: '您的包裹已发货',
+    time: '2026-06-13 14:20',
+    productImg: '/static/images/demo1.png',
+    expressCompany: '中通快递',
+    trackingNo: 'ZT0987654321',
+    latestDesc: '中通快递：您的快件已由【杭州集散中心】发出'
+  }
+];
