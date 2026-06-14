@@ -5,7 +5,7 @@
 			<view class="header-content">
 				<text class="header-title">我的</text>
 				<view class="header-actions">
-					<view class="icon-btn active-scale">
+					<view class="icon-btn active-scale" @click="checkAuthAndNavigate('/pages/messages/messages')">
 						<text class="material-symbols-outlined icon">notifications</text>
 						<view class="badge"></view>
 					</view>
@@ -115,7 +115,7 @@
 
 			<!-- Help & Settings List -->
 			<view class="settings-list">
-				<view class="list-item active-scale">
+				<view class="list-item active-scale" @click="checkAuthAndNavigate('/pages/profile/bills')">
 					<view class="item-left">
 						<text class="material-symbols-outlined icon-list">receipt_long</text>
 						<text class="item-text">我的账单</text>
@@ -129,14 +129,14 @@
 					</view>
 					<text class="material-symbols-outlined icon-more">chevron_right</text>
 				</view>
-				<view class="list-item active-scale">
+				<view class="list-item active-scale" @click="checkAuthAndNavigate('/pages/profile/support')">
 					<view class="item-left">
 						<text class="material-symbols-outlined icon-list">support_agent</text>
 						<text class="item-text">官方客服</text>
 					</view>
 					<text class="material-symbols-outlined icon-more">chevron_right</text>
 				</view>
-				<view class="list-item active-scale">
+				<view class="list-item active-scale" @click="checkAuthAndNavigate('/pages/profile/about')">
 					<view class="item-left">
 						<text class="material-symbols-outlined icon-list">info</text>
 						<text class="item-text">关于我们</text>
