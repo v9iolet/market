@@ -20,16 +20,26 @@
   </view>
 </template>
 
-<script setup>
-import { ref, computed } from 'vue';
+<script>
 import OrderLogisticsCard from '@/components/OrderLogisticsCard.vue';
 import { orderDemoData } from '@/utils/mockData.js';
 
-const orders = computed(() => orderDemoData.filter(o => o.status === '退款中'));
-
-const goBack = () => {
-  uni.navigateBack();
-};
+export default {
+  components: { OrderLogisticsCard },
+  data() {
+    return {
+      orders: []
+    }
+  },
+  created() {
+    this.orders = orderDemoData.filter(o => o.status === '退款中');
+  },
+  methods: {
+    goBack() {
+      uni.navigateBack();
+    }
+  }
+}
 </script>
 
 <style lang="scss">

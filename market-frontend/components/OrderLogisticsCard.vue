@@ -43,13 +43,15 @@
   </view>
 </template>
 
-<script setup>
-defineProps({
-  order: {
-    type: Object,
-    required: true
+<script>
+export default {
+  props: {
+    order: {
+      type: Object,
+      required: true
+    }
   }
-});
+}
 </script>
 
 <style lang="scss">

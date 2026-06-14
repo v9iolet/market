@@ -41,23 +41,30 @@
 	</view>
 </template>
 
-<script setup>
-import { ref } from 'vue';
+<script>
 import OrderLogisticsCard from '@/components/OrderLogisticsCard.vue';
 import { orderDemoData } from '@/utils/mockData.js';
 
-const currentTab = ref(0);
-const orders = ref(orderDemoData);
-
-const goBack = () => {
-	uni.navigateBack();
-};
-const switchTab = (index) => {
-	currentTab.value = index;
-};
-const onSwiperChange = (e) => {
-	currentTab.value = e.detail.current;
-};
+export default {
+  components: { OrderLogisticsCard },
+  data() {
+    return {
+      currentTab: 0,
+      orders: orderDemoData
+    }
+  },
+  methods: {
+    goBack() {
+      uni.navigateBack();
+    },
+    switchTab(index) {
+      this.currentTab = index;
+    },
+    onSwiperChange(e) {
+      this.currentTab = e.detail.current;
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

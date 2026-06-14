@@ -20,16 +20,23 @@
   </view>
 </template>
 
-<script setup>
-import { ref } from 'vue';
+<script>
 import OrderLogisticsCard from '@/components/OrderLogisticsCard.vue';
 import { orderDemoData } from '@/utils/mockData.js';
 
-const orders = ref(orderDemoData);
-
-const goBack = () => {
-  uni.navigateBack();
-};
+export default {
+  components: { OrderLogisticsCard },
+  data() {
+    return {
+      orders: orderDemoData
+    }
+  },
+  methods: {
+    goBack() {
+      uni.navigateBack();
+    }
+  }
+}
 </script>
 
 <style lang="scss">
