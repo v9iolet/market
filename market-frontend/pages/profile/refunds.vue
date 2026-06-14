@@ -4,7 +4,7 @@
       <view class="back-btn active-scale" @click="goBack">
         <text class="material-symbols-outlined">arrow_back_ios_new</text>
       </view>
-      <text class="title">我卖出的</text>
+      <text class="title">退款/售后</text>
       <view class="placeholder"></view>
     </view>
     
@@ -21,11 +21,11 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import OrderLogisticsCard from '@/components/OrderLogisticsCard.vue';
 import { orderDemoData } from '@/utils/mockData.js';
 
-const orders = ref(orderDemoData);
+const orders = computed(() => orderDemoData.filter(o => o.status === '退款中'));
 
 const goBack = () => {
   uni.navigateBack();

@@ -1,6 +1,10 @@
 <template>
-	<view>
-		<uni-popup ref="popup" type="bottom" :safe-area="false">
+	<view class="tag-selector-container">
+		<!-- Mask -->
+		<view class="popup-mask" :class="{ 'is-visible': visible }" @click="close"></view>
+
+		<!-- Popup -->
+		<view class="popup-wrapper" :class="{ 'is-visible': visible }">
 			<view class="popup-content">
 				<view class="popup-header">
 					<text class="cancel-btn" @click="close">取消</text>
@@ -23,7 +27,7 @@
 				</scroll-view>
 				<view class="safe-area-bottom"></view>
 			</view>
-		</uni-popup>
+		</view>
 	</view>
 </template>
 
@@ -45,6 +49,7 @@ export default {
 	},
 	data() {
 		return {
+			visible: false,
 			tempSelected: []
 		}
 	},
@@ -64,10 +69,10 @@ export default {
 				return;
 			}
 			this.tempSelected = [...this.selectedTags];
-			this.$refs.popup.open();
+			this.visible = true;
 		},
 		close() {
-			this.$refs.popup.close();
+			this.visible = false;
 		},
 		toggleTag(tag) {
 			const index = this.tempSelected.indexOf(tag);
@@ -93,6 +98,40 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+/* 遮罩层 */
+.popup-mask {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.4);
+	z-index: 999;
+	visibility: hidden;
+	opacity: 0;
+	transition: all 0.3s;
+
+	&.is-visible {
+		visibility: visible;
+		opacity: 1;
+	}
+}
+
+/* 弹窗容器 */
+.popup-wrapper {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 1000;
+	transform: translateY(100%);
+	transition: transform 0.3s ease-out;
+
+	&.is-visible {
+		transform: translateY(0);
+	}
+}
+
 .popup-content {
 	background-color: #ffffff;
 	border-radius: 32rpx 32rpx 0 0;

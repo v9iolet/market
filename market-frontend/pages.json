@@ -138,7 +138,7 @@
 			}
 		},
 		{
-			"path": "pages/profile/bills",
+			"path": "pages/profile/refunds",
 			"style": {
 				"navigationStyle": "custom"
 			}

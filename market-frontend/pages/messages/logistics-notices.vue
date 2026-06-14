@@ -15,18 +15,12 @@
 			<!-- 买到的 -->
 			<swiper-item>
 				<scroll-view scroll-y class="list-content">
-					<view class="notice-card active-scale" v-for="item in boughtNotices" :key="item.id" @click="goDetail">
-						<view class="card-header">
-							<text class="status">{{item.status}}</text>
-							<text class="time">{{item.time}}</text>
-						</view>
-						<view class="card-body">
-							<image class="cover" :src="item.cover" mode="aspectFill"></image>
-							<view class="info">
-								<text class="desc">{{item.desc}}</text>
-								<text class="tracking">快递单号：{{item.trackingNo}}</text>
-							</view>
-						</view>
+					<view class="order-list">
+						<OrderLogisticsCard 
+							v-for="order in orders" 
+							:key="order.orderId" 
+							:order="order" 
+						/>
 					</view>
 				</scroll-view>
 			</swiper-item>
@@ -34,9 +28,12 @@
 			<!-- 卖出的 -->
 			<swiper-item>
 				<scroll-view scroll-y class="list-content">
-					<view class="empty-state">
-						<text class="material-symbols-outlined empty-icon">inbox</text>
-						<text>暂无卖出的物流通知</text>
+					<view class="order-list">
+						<OrderLogisticsCard 
+							v-for="order in orders" 
+							:key="'sold-'+order.orderId" 
+							:order="order" 
+						/>
 					</view>
 				</scroll-view>
 			</swiper-item>
@@ -44,30 +41,23 @@
 	</view>
 </template>
 
-<script>
-export default {
-	data() {
-		return {
-			currentTab: 0,
-			boughtNotices: [
-				{
-					id: 1,
-					status: '已发货',
-					time: '10:42 AM',
-					desc: '您的包裹已交由顺丰速运揽收',
-					trackingNo: 'SF1234567890',
-					cover: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDZayQbW7Q6gFkqRnSNBpL-M3aW8BrZXWw9026KO1h6HrIDkcLaJpRuBPjjG2TQMxT9Ap-vV3LWemQ67OaXL39Ba0vpueIVNfyJQmfp5zLnALZuI0J1ZmHIqmhnj6rjXz7EH4aYqzF7gz4p2im-IiMGdSdKTVNXrMqb1nf1WAR2n5KoaLl-sSZZ3FlHMQdTUXR6cHxIibC4END5uFyNOzTPYiYIaQ1BD-FIXZGlKvPkVvy1r9XfkDwRa7ubbDJ9EZ_UabL04Beheffx'
-				}
-			]
-		}
-	},
-	methods: {
-		goBack() { uni.navigateBack(); },
-		switchTab(index) { this.currentTab = index; },
-		onSwiperChange(e) { this.currentTab = e.detail.current; },
-		goDetail() { uni.navigateTo({ url: '/pages/order/logistics-detail' }); }
-	}
-}
+<script setup>
+import { ref } from 'vue';
+import OrderLogisticsCard from '@/components/OrderLogisticsCard.vue';
+import { orderDemoData } from '@/utils/mockData.js';
+
+const currentTab = ref(0);
+const orders = ref(orderDemoData);
+
+const goBack = () => {
+	uni.navigateBack();
+};
+const switchTab = (index) => {
+	currentTab.value = index;
+};
+const onSwiperChange = (e) => {
+	currentTab.value = e.detail.current;
+};
 </script>
 
 <style lang="scss" scoped>
@@ -104,27 +94,8 @@ export default {
 .swiper-box {
 	flex: 1; margin-top: calc(env(safe-area-inset-top) + 104rpx); height: calc(100vh - env(safe-area-inset-top) - 104rpx);
 }
-.list-content { height: 100%; padding: 32rpx; box-sizing: border-box; }
-.notice-card {
-	background-color: $color-surface; border-radius: 24rpx; padding: 32rpx;
-	margin-bottom: 24rpx; box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.03);
-	.card-header {
-		display: flex; justify-content: space-between; margin-bottom: 24rpx;
-		.status { font-weight: 600; font-size: 32rpx; color: $color-primary; }
-		.time { font-size: 24rpx; color: $color-outline; }
-	}
-	.card-body {
-		display: flex; gap: 24rpx;
-		.cover { width: 120rpx; height: 120rpx; border-radius: 16rpx; }
-		.info {
-			flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 12rpx;
-			.desc { font-size: 28rpx; color: $color-on-surface; }
-			.tracking { font-size: 24rpx; color: $color-on-surface-variant; }
-		}
-	}
-}
-.empty-state {
-	display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: $color-outline; gap: 16rpx;
-	.empty-icon { font-size: 96rpx; opacity: 0.5; }
+.list-content { height: 100%; box-sizing: border-box; }
+.order-list {
+	padding: 24rpx $spacing-container-margin;
 }
 </style>

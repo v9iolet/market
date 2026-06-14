@@ -1,0 +1,13 @@
+{
+  "change": "decouple-transaction-logistics",
+  "phase": "design",
+  "mode": "compact",
+  "canonical_spec": "openspec",
+  "generated_by": "comet-handoff.sh",
+  "context_hash": "356ebfff982cbd647b8322b267be5ec79d31e7ea97ccfc22ab357564a0710de7",
+  "files": [
+    { "path": "openspec/changes/decouple-transaction-logistics/proposal.md", "sha256": "ed4fee841a28630ad922d2ae78f3baa2ea9bed8930672d304266e8459b7c6a1d" },
+    { "path": "openspec/changes/decouple-transaction-logistics/design.md", "sha256": "e979f8f512978dc0a5bc25135c306e257ef62cc13ad82148adf06fd0a5ea82f1" },
+    { "path": "openspec/changes/decouple-transaction-logistics/tasks.md", "sha256": "f8b69c948c36b8020e17c90674297fa5337a079ce394d7a86facdf0ab21d85f7" }
+  ]
+}

@@ -101,13 +101,13 @@
 							<text class="count">8</text>
 						</view>
 					</view>
-					<view class="action-item active-scale" @click="checkAuthAndNavigate('/pages/profile/favorites')">
+					<view class="action-item active-scale" @click="checkAuthAndNavigate('/pages/profile/refunds')">
 						<view class="icon-box">
-							<text class="material-symbols-outlined">favorite</text>
+							<text class="material-symbols-outlined">currency_exchange</text>
 						</view>
 						<view class="action-text">
-							<text class="label">收藏的</text>
-							<text class="count">24</text>
+							<text class="label">退款/售后</text>
+							<text class="count">1</text>
 						</view>
 					</view>
 				</view>
@@ -115,10 +115,10 @@
 
 			<!-- Help & Settings List -->
 			<view class="settings-list">
-				<view class="list-item active-scale" @click="checkAuthAndNavigate('/pages/profile/bills')">
+				<view class="list-item active-scale" @click="checkAuthAndNavigate('/pages/profile/favorites')">
 					<view class="item-left">
-						<text class="material-symbols-outlined icon-list">receipt_long</text>
-						<text class="item-text">我的账单</text>
+						<text class="material-symbols-outlined icon-list">favorite</text>
+						<text class="item-text">我的收藏</text>
 					</view>
 					<text class="material-symbols-outlined icon-more">chevron_right</text>
 				</view>

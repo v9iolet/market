@@ -8,16 +8,25 @@
       <view class="placeholder"></view>
     </view>
     
-    <view class="content">
-      <view class="empty-state">
-        <text class="material-symbols-outlined empty-icon">shopping_bag</text>
-        <text class="empty-text">暂无买到的订单</text>
+    <scroll-view scroll-y class="content-scroll">
+      <view class="order-list">
+        <OrderLogisticsCard 
+          v-for="order in orders" 
+          :key="order.orderId" 
+          :order="order" 
+        />
       </view>
-    </view>
+    </scroll-view>
   </view>
 </template>
 
 <script setup>
+import { ref } from 'vue';
+import OrderLogisticsCard from '@/components/OrderLogisticsCard.vue';
+import { orderDemoData } from '@/utils/mockData.js';
+
+const orders = ref(orderDemoData);
+
 const goBack = () => {
   uni.navigateBack();
 };
@@ -25,7 +34,7 @@ const goBack = () => {
 
 <style lang="scss">
 .secondary-page {
-  min-height: 100vh;
+  height: 100vh;
   background-color: $color-background;
   display: flex;
   flex-direction: column;
@@ -37,6 +46,7 @@ const goBack = () => {
   align-items: center;
   justify-content: space-between;
   background-color: $color-surface;
+  flex-shrink: 0;
   
   .back-btn {
     width: 80rpx;
@@ -62,27 +72,12 @@ const goBack = () => {
   }
 }
 
-.content {
+.content-scroll {
   flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
-  .empty-state {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 24rpx;
-    color: $color-on-surface-variant;
-    
-    .empty-icon {
-      font-size: 120rpx;
-      opacity: 0.5;
-    }
-    
-    .empty-text {
-      font-size: 28rpx;
-    }
-  }
+  height: 0;
+}
+
+.order-list {
+  padding: 24rpx $spacing-container-margin;
 }
 </style>
