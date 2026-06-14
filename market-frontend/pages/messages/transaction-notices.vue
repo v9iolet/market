@@ -4,13 +4,13 @@
       <view class="back-btn active-scale" @click="goBack">
         <text class="material-symbols-outlined">arrow_back_ios_new</text>
       </view>
-      <text class="page-title">交易物流</text>
+      <text class="page-title">交易信息</text>
       <view class="placeholder"></view>
     </view>
 
     <scroll-view scroll-y class="list-content">
       <view class="notice-list">
-        <LogisticsNoticeCard 
+        <TransactionNoticeCard 
           v-for="item in notices" 
           :key="item.id" 
           :notice="item" 
@@ -21,12 +21,12 @@
 </template>
 
 <script>
-import LogisticsNoticeCard from '@/components/LogisticsNoticeCard.vue';
-import { logisticsNoticesDemoData } from '@/utils/mockData.js';
+import TransactionNoticeCard from '@/components/TransactionNoticeCard.vue';
+import { transactionNoticesDemoData } from '@/utils/mockData.js';
 
 export default {
   components: {
-    LogisticsNoticeCard
+    TransactionNoticeCard
   },
   data() {
     return {
@@ -34,7 +34,7 @@ export default {
     }
   },
   onLoad() {
-    this.notices = logisticsNoticesDemoData;
+    this.notices = transactionNoticesDemoData;
   },
   methods: {
     goBack() {
