@@ -27,11 +27,11 @@
 		<scroll-view scroll-y class="main-content">
 			<!-- Functional Entry Group -->
 			<view class="functional-group">
-				<view class="func-item active-scale" @click="navTo('logistics')">
+				<view class="func-item active-scale" @click="navTo('transaction-notices')">
 					<view class="icon-circle logistics">
 						<text class="material-symbols-outlined icon-fill">local_shipping</text>
 					</view>
-					<text class="func-label">交易物流</text>
+					<text class="func-label">交易信息</text>
 				</view>
 				<view class="func-item active-scale" @click="navTo('notices')">
 					<view class="icon-circle notices">
@@ -147,11 +147,7 @@
 				}
 			},
 			navTo(type) {
-				if (type === 'logistics') {
-					uni.navigateTo({ url: `/pages/messages/logistics-notices` });
-				} else {
-					uni.navigateTo({ url: `/pages/messages/${type}` });
-				}
+				uni.navigateTo({ url: `/pages/messages/${type}` });
 			},
 			navToChat(msg) {
 				uni.navigateTo({ url: `/pages/messages/chat?id=${msg.id}&name=${encodeURIComponent(msg.name)}` });

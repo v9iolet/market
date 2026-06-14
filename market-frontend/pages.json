@@ -144,7 +144,7 @@
 			}
 		},
 		{
-			"path": "pages/messages/logistics-notices",
+			"path": "pages/messages/transaction-notices",
 			"style": {
 				"navigationBarTitleText": "交易物流",
 				"navigationStyle": "custom"
