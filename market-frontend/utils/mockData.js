@@ -53,23 +53,41 @@ export const orderDemoData = [
   }
 ];
 
-export const logisticsNoticesDemoData = [
+export const transactionNoticesDemoData = [
   {
-    id: 'n1',
-    statusTitle: '包裹派送中',
+    id: 't1',
+    orderId: 'ORD20260614002',
+    statusTitle: '待付款',
     time: '2026-06-14 10:30',
-    productImg: '/static/images/demo3.png',
-    expressCompany: '顺丰速运',
-    trackingNo: 'SF1234567890',
-    latestDesc: '顺丰速运：您的快件已到达【深圳市】'
+    productImg: '/static/images/demo2.png',
+    productName: 'Apple AirPods Pro (第二代)',
+    desc: '您的订单尚未付款，请尽快完成支付，以免订单取消。'
   },
   {
-    id: 'n2',
-    statusTitle: '您的包裹已发货',
-    time: '2026-06-13 14:20',
+    id: 't2',
+    orderId: 'ORD20260614001',
+    statusTitle: '待发货',
+    time: '2026-06-14 09:15',
     productImg: '/static/images/demo1.png',
-    expressCompany: '中通快递',
-    trackingNo: 'ZT0987654321',
-    latestDesc: '中通快递：您的快件已由【杭州集散中心】发出'
+    productName: 'Sony PlayStation 5 光驱版 国行',
+    desc: '买家已付款，等待卖家发货。'
+  },
+  {
+    id: 't3',
+    orderId: 'ORD20260614003',
+    statusTitle: '待收货',
+    time: '2026-06-13 14:20',
+    productImg: '/static/images/demo3.png',
+    productName: 'Nintendo Switch OLED 日版',
+    desc: '卖家已发货，包裹正在路上，请耐心等待。'
+  },
+  {
+    id: 't4',
+    orderId: 'ORD20260614004',
+    statusTitle: '退款中',
+    time: '2026-06-13 18:45',
+    productImg: '/static/images/demo4.png',
+    productName: 'Logitech G Pro X Superlight 狗屁王二代',
+    desc: '您的退款申请正在处理中，商家已同意退款。'
   }
 ];
