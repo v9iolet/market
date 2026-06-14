@@ -2,6 +2,7 @@
 change: develop-profile-secondary-pages
 design-doc: docs/superpowers/specs/2026-06-14-develop-profile-secondary-pages-design.md
 base-ref: 4cc2bd9e1c0704ba86de69701edaf15723a92a97
+archived-with: 2026-06-14-develop-profile-secondary-pages
 ---
 
 # Implementation Plan: Profile Secondary Pages

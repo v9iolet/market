@@ -2,6 +2,8 @@
 comet_change: develop-profile-secondary-pages
 role: technical-design
 canonical_spec: openspec
+archived-with: 2026-06-14-develop-profile-secondary-pages
+status: implemented
 ---
 
 # Technical Design: Profile Secondary Pages & Auth Interception
