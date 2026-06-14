@@ -16,6 +16,6 @@ verification_report: docs/superpowers/reports/2026-06-14-develop-profile-seconda
 branch_status: handled
 created_at: 2026-06-14
 verified_at: 2026-06-14
-archived: false
+archived: true
 handoff_context: openspec/changes/develop-profile-secondary-pages/.comet/handoff/design-context.json
 handoff_hash: 1492b5bc9ecbba6c1971f5027d9988fafabec5610519a18656744ad309e11ce8
