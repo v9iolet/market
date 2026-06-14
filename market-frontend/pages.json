@@ -61,9 +61,9 @@
 			}
 		},
 		{
-			"path": "pages/messages/logistics",
+			"path": "pages/order/logistics-detail",
 			"style": {
-				"navigationBarTitleText": "交易物流",
+				"navigationBarTitleText": "物流详情",
 				"navigationStyle": "custom"
 			}
 		},
