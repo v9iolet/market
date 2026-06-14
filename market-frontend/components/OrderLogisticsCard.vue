@@ -55,10 +55,10 @@ defineProps({
 <style lang="scss">
 .order-card {
   background-color: $color-surface;
-  border-radius: $radius-lg;
+  border-radius: 24rpx;
   padding: 24rpx;
   margin-bottom: 24rpx;
-  box-shadow: $shadow-sm;
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.03);
 }
 
 .card-header {
@@ -106,7 +106,7 @@ defineProps({
   .image-wrapper {
     width: 160rpx;
     height: 160rpx;
-    border-radius: $radius-md;
+    border-radius: 16rpx;
     overflow: hidden;
     background-color: $color-background;
     flex-shrink: 0;
@@ -139,7 +139,7 @@ defineProps({
 
 .logistics-box {
   background-color: $color-background;
-  border-radius: $radius-md;
+  border-radius: 16rpx;
   padding: 16rpx 20rpx;
   margin-bottom: 24rpx;
   display: flex;
