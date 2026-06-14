@@ -6,9 +6,9 @@
     </view>
     <view class="card-content">
       <image class="product-img" :src="notice.productImg" mode="aspectFill"></image>
-      <view class="logistics-info">
-        <text class="express-info">{{ notice.expressCompany }} {{ notice.trackingNo }}</text>
-        <text class="latest-desc">{{ notice.latestDesc }}</text>
+      <view class="order-info">
+        <text class="product-name">{{ notice.productName }}</text>
+        <text class="desc">{{ notice.desc }}</text>
       </view>
     </view>
   </view>
@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: 'LogisticsNoticeCard',
+  name: 'TransactionNoticeCard',
   props: {
     notice: {
       type: Object,
@@ -26,7 +26,7 @@ export default {
   methods: {
     handleCardClick() {
       uni.navigateTo({
-        url: `/pages/order/logistics-detail?id=${this.notice.id}`
+        url: `/pages/order/detail?id=${this.notice.orderId}`
       });
     }
   }
@@ -72,20 +72,23 @@ export default {
       background-color: #f5f5f5;
     }
 
-    .logistics-info {
+    .order-info {
       flex: 1;
       display: flex;
       flex-direction: column;
 
-      .express-info {
-        font-size: 12px;
-        color: #666;
-        margin-bottom: 4px;
-      }
-
-      .latest-desc {
+      .product-name {
         font-size: 14px;
         color: #333;
+        margin-bottom: 4px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .desc {
+        font-size: 12px;
+        color: #666;
         line-height: 1.4;
         display: -webkit-box;
         -webkit-box-orient: vertical;
