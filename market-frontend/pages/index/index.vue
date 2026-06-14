@@ -15,7 +15,7 @@
 						/>
 					</view>
 				</view>
-				<view class="notification-section active-scale">
+				<view class="notification-section active-scale" @click="goToMessages">
 					<text class="material-symbols-outlined text-primary">notifications</text>
 					<view class="notification-badge"></view>
 				</view>
@@ -251,6 +251,9 @@
 			},
 			goToSearch() {
 				uni.navigateTo({ url: '/pages/search/search' });
+			},
+			goToMessages() {
+				uni.navigateTo({ url: '/pages/messages/messages' });
 			}
 		}
 	}
