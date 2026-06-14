@@ -100,8 +100,16 @@
 
 <script setup>
 import { ref } from "vue";
+import { onLoad } from "@dcloudio/uni-app";
 
 const currentMode = ref("login");
+const redirectUrl = ref("");
+
+onLoad((options) => {
+  if (options.redirect) {
+    redirectUrl.value = decodeURIComponent(options.redirect);
+  }
+});
 
 const handleBack = () => {
   uni.navigateBack();
@@ -111,10 +119,14 @@ const handleAction = () => {
   // 模拟操作成功，写入状态
   uni.setStorageSync("isLoggedIn", true);
 
-  // 重定向到 profile 页面
-  uni.reLaunch({
-    url: "/pages/profile/profile",
-  });
+  if (redirectUrl.value) {
+    uni.navigateTo({ url: redirectUrl.value });
+  } else {
+    // 默认重定向到 profile 页面
+    uni.reLaunch({
+      url: "/pages/profile/profile",
+    });
+  }
 };
 </script>
 

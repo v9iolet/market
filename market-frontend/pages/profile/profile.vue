@@ -74,7 +74,7 @@
 					<text class="material-symbols-outlined icon-more">chevron_right</text>
 				</view>
 				<view class="grid-actions">
-					<view class="action-item active-scale">
+					<view class="action-item active-scale" @click="checkAuthAndNavigate('/pages/profile/published')">
 						<view class="icon-box">
 							<text class="material-symbols-outlined">outbox</text>
 						</view>
@@ -83,7 +83,7 @@
 							<text class="count">5</text>
 						</view>
 					</view>
-					<view class="action-item active-scale">
+					<view class="action-item active-scale" @click="checkAuthAndNavigate('/pages/profile/sold')">
 						<view class="icon-box">
 							<text class="material-symbols-outlined">payments</text>
 						</view>
@@ -92,7 +92,7 @@
 							<text class="count">12</text>
 						</view>
 					</view>
-					<view class="action-item active-scale">
+					<view class="action-item active-scale" @click="checkAuthAndNavigate('/pages/profile/bought')">
 						<view class="icon-box">
 							<text class="material-symbols-outlined">shopping_bag</text>
 						</view>
@@ -101,7 +101,7 @@
 							<text class="count">8</text>
 						</view>
 					</view>
-					<view class="action-item active-scale">
+					<view class="action-item active-scale" @click="checkAuthAndNavigate('/pages/profile/favorites')">
 						<view class="icon-box">
 							<text class="material-symbols-outlined">favorite</text>
 						</view>
@@ -122,7 +122,7 @@
 					</view>
 					<text class="material-symbols-outlined icon-more">chevron_right</text>
 				</view>
-				<view class="list-item active-scale">
+				<view class="list-item active-scale" @click="checkAuthAndNavigate('/pages/profile/address')">
 					<view class="item-left">
 						<text class="material-symbols-outlined icon-list">location_on</text>
 						<text class="item-text">收货地址</text>
@@ -191,6 +191,13 @@
 			},
 			goToLogin() {
 				uni.navigateTo({ url: '/pages/login/login' });
+			},
+			checkAuthAndNavigate(url) {
+				if (this.isLoggedIn) {
+					uni.navigateTo({ url });
+				} else {
+					uni.navigateTo({ url: '/pages/login/login?redirect=' + encodeURIComponent(url) });
+				}
 			}
 		}
 	}
