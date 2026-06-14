@@ -142,6 +142,13 @@
 			"style": {
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"path": "pages/messages/logistics-notices",
+			"style": {
+				"navigationBarTitleText": "交易物流",
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"globalStyle": {
