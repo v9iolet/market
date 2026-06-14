@@ -1,22 +1,19 @@
-# 架构与设计 (Design)
+# Design: Decouple Transaction Logistics
 
-## 架构拆分方案
-我们将交易物流相关的页面进行“三层解耦”：
+## Architecture Decisions & Approach
+为了实现前端静态的“订单与物流耦合” UI 体验并调整个人主页结构，我们将在以下层面进行设计：
 
-1. **消息通知层 (Logistics Notices)**
-   - 在 `pages/messages/logistics-notices.vue` 中实现物流消息流。
-   - 包含顶部选项卡（Tabs），分为“我买到的”和“我卖出的”。
-   - 列表仅展示状态变更的摘要（如“已发货”、“正在派件”）。
+1. **统一的订单与物流 Mock 数据结构**
+   - 包含字段：`orderId`, `status` (待发货、待付款、待收货、退款中), `productInfo` (图片、名称、价格), `latestLogistics` (包含时间、状态文案、地点等信息)。
+   - 在 `bought.vue` 和 `sold.vue` 中引用同一套或结构相同的数据集合，以便渲染具有一致 UI 的列表卡片。
+   - 在 `messages.vue` 的“交易物流” Tab 中复用该数据结构或 UI 组件渲染逻辑。
 
-2. **订单管理层 (Order Management)**
-   - `pages/profile/bought.vue` 和 `pages/profile/sold.vue` 作为订单列表。
-   - 每个订单卡片中暴露“查看物流”的按钮。
+2. **卡片 UI 组件化重构**
+   - 新增或改造当前的订单卡片组件，使其底部或中部内嵌一个浅色的容器（如灰色背景区域），显示“最新一条物流动态”，并加上小图标或箭头，暗示可点击进入详情。
+   - 样式参考淘宝、闲鱼的主流交互：左侧商品图，右侧商品详情，下方紧贴着一条物流摘要。
 
-3. **通用物流展示层 (Logistics Timeline)**
-   - 将原有的 `pages/messages/logistics.vue` 重构并迁移至 `pages/order/logistics-detail.vue`。
-   - 此页面不感知买卖双方上下文，仅根据传入的 `orderId` 或 `trackingNumber` 渲染纯粹的物流轨迹时间线。
-
-## 数据流与路由 (Routing)
-- `/pages/messages/messages` -> 点击交易物流 -> `/pages/messages/logistics-notices`
-- `/pages/messages/logistics-notices` -> 点击具体通知 -> `/pages/order/logistics-detail?id=xxx`
-- 订单列表（买到/卖出） -> 点击查看物流 -> `/pages/order/logistics-detail?id=xxx`
+3. **路由与个人页结构调整**
+   - 修改 `profile.vue` 中的应用网格 (Grid) 菜单列表。
+   - 找到原“我的收藏”所处位置的 index，将其配置改为“退款/售后”，图标使用退款相关 icon，路由指向 `refunds.vue`。
+   - 找到原“我的账单”所处位置的 index，将其配置改为“我的收藏”，图标使用收藏相关 icon，路由指向 `favorites.vue`。
+   - 确保 `pages.json`（如果存在）注册了新的页面路径，并补充缺失的页面。
