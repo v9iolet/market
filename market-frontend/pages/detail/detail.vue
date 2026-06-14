@@ -117,12 +117,13 @@
 
 		<!-- Bottom Bar -->
 		<view class="bottom-bar glass-effect">
+			<view class="inline-toast" v-if="showFavoriteToast">已添加至收藏</view>
 			<view class="action-icons">
-				<view class="action-icon active-scale">
-					<text class="material-symbols-outlined icon">favorite</text>
-					<text class="label">想要</text>
+				<view class="action-icon active-scale" @click="toggleFavorite">
+					<text class="material-symbols-outlined icon" :class="{'text-primary': isFavorite, 'fill-icon': isFavorite}">favorite</text>
+					<text class="label" :class="{'text-primary': isFavorite}">想要</text>
 				</view>
-				<view class="action-icon active-scale">
+				<view class="action-icon active-scale" @click="goConsult">
 					<text class="material-symbols-outlined icon">help</text>
 					<text class="label">咨询</text>
 				</view>
@@ -145,6 +146,8 @@
 	export default {
 		data() {
 			return {
+				isFavorite: false,
+				showFavoriteToast: false,
 				isScrolled: false,
 				currentSlide: 0,
 				images: [
@@ -166,7 +169,26 @@
 			},
 			goBuy() {
 				uni.navigateTo({ url: '/pages/checkout/checkout' });
+			},
+			toggleFavorite() {
+				this.isFavorite = !this.isFavorite;
+				if (this.isFavorite) {
+					this.showFavoriteToast = true;
+					if (this.favoriteTimer) clearTimeout(this.favoriteTimer);
+					this.favoriteTimer = setTimeout(() => {
+						this.showFavoriteToast = false;
+					}, 2000);
+				} else {
+					this.showFavoriteToast = false;
+					if (this.favoriteTimer) clearTimeout(this.favoriteTimer);
+				}
+			},
+			goConsult() {
+				uni.navigateTo({ url: '/pages/messages/chat?id=mockUser&name=林小姐' });
 			}
+		},
+		beforeDestroy() {
+			if (this.favoriteTimer) clearTimeout(this.favoriteTimer);
 		}
 	}
 </script>
@@ -570,5 +592,34 @@
 
 	.safe-bottom-area {
 		height: calc(200rpx + env(safe-area-inset-bottom));
+	}
+
+	.inline-toast {
+		position: absolute;
+		bottom: 100%;
+		left: 50%;
+		transform: translateX(-50%);
+		margin-bottom: 24rpx;
+		background-color: rgba(9, 20, 38, 0.8);
+		color: #fff;
+		padding: 12rpx 32rpx;
+		border-radius: 9999rpx;
+		font-size: 24rpx;
+		font-weight: 600;
+		white-space: nowrap;
+		box-shadow: 0 8rpx 16rpx rgba(0,0,0,0.1);
+		animation: fadeInOut 2s ease forwards;
+		pointer-events: none;
+	}
+
+	.fill-icon {
+		font-variation-settings: 'FILL' 1;
+	}
+
+	@keyframes fadeInOut {
+		0% { opacity: 0; transform: translate(-50%, 20rpx); }
+		15% { opacity: 1; transform: translate(-50%, 0); }
+		85% { opacity: 1; transform: translate(-50%, 0); }
+		100% { opacity: 0; transform: translate(-50%, -20rpx); }
 	}
 </style>
