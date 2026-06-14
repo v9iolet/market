@@ -5,29 +5,13 @@
 			<view class="header-content">
 				<view class="cancel-btn active-scale" @click="goBack">取消</view>
 				<text class="header-title">发布闲置</text>
-				<view class="publish-btn active-scale">发布</view>
+				<view class="publish-btn active-scale" @click="submit">发布</view>
 			</view>
 		</view>
 
 		<scroll-view scroll-y class="main-content">
 			<!-- Media Upload Section -->
-			<view class="media-section">
-				<view class="media-grid">
-					<view class="upload-btn active-scale">
-						<text class="material-symbols-outlined icon-add">add_a_photo</text>
-						<text class="upload-label">添加照片/视频</text>
-					</view>
-					<view class="empty-slot">
-						<text class="material-symbols-outlined icon-empty">image</text>
-					</view>
-					<view class="empty-slot">
-						<text class="material-symbols-outlined icon-empty">image</text>
-					</view>
-					<view class="empty-slot">
-						<text class="material-symbols-outlined icon-empty">image</text>
-					</view>
-				</view>
-			</view>
+			<MediaUpload v-model:list="formData.mediaList" :max-count="9" />
 
 			<!-- Input Section -->
 			<view class="input-section">
@@ -36,6 +20,7 @@
 						class="title-input" 
 						placeholder="请输入宝贝品牌和型号" 
 						placeholder-class="input-placeholder"
+						v-model="formData.title"
 						@focus="isTitleFocused = true"
 						@blur="isTitleFocused = false"
 					/>
@@ -47,35 +32,42 @@
 						placeholder="描述您的宝贝，购买渠道、成色瑕疵等" 
 						placeholder-class="input-placeholder"
 						:auto-height="true"
+						v-model="formData.description"
 					></textarea>
 				</view>
-				<view class="tag-hint active-scale">
+				<view class="tag-hint active-scale" @click="openTagSelector">
 					<text class="material-symbols-outlined icon-tag">sell</text>
-					<text class="tag-label">添加标签，让更多人看到</text>
+					<text class="tag-label">
+						{{ formData.tags.length ? formData.tags.join(' · ') : '添加标签，让更多人看到' }}
+					</text>
 				</view>
 			</view>
 
 			<!-- Form Rows Section -->
 			<view class="form-section">
 				<!-- Category -->
-				<view class="form-row active-scale">
+				<view class="form-row active-scale" @click="selectCategory">
 					<view class="row-left">
 						<text class="material-symbols-outlined row-icon">category</text>
 						<text class="row-label">分类</text>
 					</view>
 					<view class="row-right">
-						<text class="row-value placeholder-value">选择分类</text>
+						<text class="row-value" :class="{ 'placeholder-value': !formData.category }">
+							{{ formData.category || '选择分类' }}
+						</text>
 						<text class="material-symbols-outlined icon-arrow">chevron_right</text>
 					</view>
 				</view>
 				<!-- Condition -->
-				<view class="form-row active-scale">
+				<view class="form-row active-scale" @click="selectCondition">
 					<view class="row-left">
 						<text class="material-symbols-outlined row-icon">check_circle</text>
 						<text class="row-label">成色</text>
 					</view>
 					<view class="row-right">
-						<text class="row-value">全新/非全新</text>
+						<text class="row-value" :class="{ 'placeholder-value': !formData.condition }">
+							{{ formData.condition || '选择成色' }}
+						</text>
 						<text class="material-symbols-outlined icon-arrow">chevron_right</text>
 					</view>
 				</view>
@@ -87,18 +79,20 @@
 					</view>
 					<view class="row-right">
 						<text class="price-symbol">¥</text>
-						<input class="price-input" type="digit" placeholder="0.00" placeholder-class="price-placeholder" />
+						<input class="price-input" type="digit" placeholder="0.00" placeholder-class="price-placeholder" v-model="formData.price" />
 						<text class="material-symbols-outlined icon-arrow">chevron_right</text>
 					</view>
 				</view>
 				<!-- Delivery -->
-				<view class="form-row active-scale no-border">
+				<view class="form-row active-scale no-border" @click="selectDelivery">
 					<view class="row-left">
 						<text class="material-symbols-outlined row-icon">local_shipping</text>
 						<text class="row-label">发货方式</text>
 					</view>
 					<view class="row-right">
-						<text class="row-value">快递/自提</text>
+						<text class="row-value" :class="{ 'placeholder-value': !formData.deliveryMethod }">
+							{{ formData.deliveryMethod || '选择发货方式' }}
+						</text>
 						<text class="material-symbols-outlined icon-arrow">chevron_right</text>
 					</view>
 				</view>
@@ -117,24 +111,181 @@
 		</scroll-view>
 
 		<CustomTabBar current="publish" />
+		
+		<!-- Tag Selector Popup -->
+		<TagSelectorPopup 
+			ref="tagSelector" 
+			:category="formData.category" 
+			:selected-tags="formData.tags"
+			:category-tags-map="categoryTagsMap"
+			@confirm="handleTagConfirm"
+		/>
 	</view>
 </template>
 
 <script>
 	import CustomTabBar from '@/components/CustomTabBar/CustomTabBar.vue';
+	import MediaUpload from './components/MediaUpload.vue';
+	import TagSelectorPopup from './components/TagSelectorPopup.vue';
 
 	export default {
 		components: {
-			CustomTabBar
+			CustomTabBar,
+			MediaUpload,
+			TagSelectorPopup
 		},
 		data() {
 			return {
-				isTitleFocused: false
+				isTitleFocused: false,
+				formData: {
+					title: '',
+					description: '',
+					price: '',
+					category: '',
+					condition: '',
+					deliveryMethod: '',
+					tags: [],
+					mediaList: []
+				},
+				hasDraftRestored: false,
+				isPublished: false,
+				
+				// Mock Data Dictionary
+				categories: ['手机数码', '服装配饰', '家用电器', '美妆个护', '书籍文具', '运动户外'],
+				conditions: ['全新', '99新', '9成新', '8成新', '7成新及以下'],
+				deliveries: ['快递发货', '同城面交', '自提'],
+				categoryTagsMap: {
+					'手机数码': ['无拆无修', '箱说全', '国行', '还在保', '女生自用', '电池健康高'],
+					'服装配饰': ['吊牌未拆', '仅试穿', '正品保证', '包邮', '小众设计'],
+					'家用电器': ['功能完好', '配件齐全', '极少使用', '外观无损', '制冷强劲'],
+					'美妆个护': ['未拆封', '专柜正品', '余量多', '日期新鲜', '小样'],
+					'书籍文具': ['无笔记', '绝版', '保存完好', '全新塑封', '打包出'],
+					'运动户外': ['专业装备', '几乎全新', '带票', '轻量化', '露营必备']
+				}
 			};
+		},
+		onLoad() {
+			this.checkDraft();
+		},
+		onUnload() {
+			this.saveDraft();
 		},
 		methods: {
 			goBack() {
 				uni.navigateBack();
+			},
+			checkDraft() {
+				try {
+					const draft = uni.getStorageSync('publish_draft');
+					if (draft) {
+						uni.showModal({
+							title: '提示',
+							content: '您有未发布的草稿，是否恢复？',
+							success: (res) => {
+								if (res.confirm) {
+									this.formData = draft;
+								} else {
+									uni.removeStorageSync('publish_draft');
+								}
+								this.hasDraftRestored = true;
+							}
+						});
+					} else {
+						this.hasDraftRestored = true;
+					}
+				} catch (e) {
+					console.error('Failed to read draft', e);
+					this.hasDraftRestored = true;
+				}
+			},
+			saveDraft() {
+				if (this.isPublished) return;
+				
+				const hasContent = 
+					this.formData.title.trim() !== '' || 
+					this.formData.description.trim() !== '' || 
+					this.formData.category !== '' || 
+					this.formData.mediaList.length > 0 ||
+					this.formData.price !== '';
+
+				if (hasContent) {
+					uni.setStorageSync('publish_draft', this.formData);
+				}
+			},
+			selectCategory() {
+				uni.showActionSheet({
+					itemList: this.categories,
+					success: (res) => {
+						const selected = this.categories[res.tapIndex];
+						if (this.formData.category !== selected) {
+							this.formData.category = selected;
+							// 清空标签，因为分类变了
+							this.formData.tags = [];
+						}
+					}
+				});
+			},
+			selectCondition() {
+				uni.showActionSheet({
+					itemList: this.conditions,
+					success: (res) => {
+						this.formData.condition = this.conditions[res.tapIndex];
+					}
+				});
+			},
+			selectDelivery() {
+				uni.showActionSheet({
+					itemList: this.deliveries,
+					success: (res) => {
+						this.formData.deliveryMethod = this.deliveries[res.tapIndex];
+					}
+				});
+			},
+			openTagSelector() {
+				this.$refs.tagSelector.open();
+			},
+			handleTagConfirm(tags) {
+				this.formData.tags = tags;
+			},
+			submit() {
+				// 严格拦截
+				if (this.formData.mediaList.length === 0) {
+					return uni.showToast({ title: '至少上传1张图片', icon: 'none' });
+				}
+				if (this.formData.title.trim() === '') {
+					return uni.showToast({ title: '请输入标题', icon: 'none' });
+				}
+				if (this.formData.category === '') {
+					return uni.showToast({ title: '请选择分类', icon: 'none' });
+				}
+				if (this.formData.description.trim() === '') {
+					return uni.showToast({ title: '请输入描述', icon: 'none' });
+				}
+				if (this.formData.tags.length === 0) {
+					return uni.showToast({ title: '请至少选择1个标签', icon: 'none' });
+				}
+				if (this.formData.condition === '') {
+					return uni.showToast({ title: '请选择成色', icon: 'none' });
+				}
+				if (!this.formData.price || Number(this.formData.price) <= 0) {
+					return uni.showToast({ title: '请输入有效的价格', icon: 'none' });
+				}
+				if (this.formData.deliveryMethod === '') {
+					return uni.showToast({ title: '请选择发货方式', icon: 'none' });
+				}
+
+				// 发布成功
+				this.isPublished = true;
+				uni.removeStorageSync('publish_draft');
+				uni.showToast({
+					title: '发布成功',
+					icon: 'success'
+				});
+				setTimeout(() => {
+					uni.switchTab({
+						url: '/pages/index/index'
+					});
+				}, 1500);
 			}
 		}
 	}
@@ -197,57 +348,6 @@
 		display: flex;
 		flex-direction: column;
 		gap: $spacing-stack-lg;
-	}
-
-	/* Media Upload Section */
-	.media-section {
-		margin-top: $spacing-stack-lg;
-
-		.media-grid {
-			display: grid;
-			grid-template-columns: repeat(3, 1fr);
-			gap: 24rpx;
-
-			.upload-btn {
-				aspect-ratio: 1/1;
-				border-radius: 24rpx;
-				border: 4rpx dashed $color-outline-variant;
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				justify-content: center;
-				background-color: $color-surface-container-low;
-				cursor: pointer;
-
-				.icon-add {
-					color: $color-outline;
-					font-size: 60rpx;
-					margin-bottom: 8rpx;
-				}
-
-				.upload-label {
-					font-size: 20rpx;
-					font-weight: 600;
-					color: $color-on-surface-variant;
-				}
-			}
-
-			.empty-slot {
-				aspect-ratio: 1/1;
-				border-radius: 24rpx;
-				background-color: $color-surface-container-lowest;
-				border: 2rpx solid $color-outline-variant;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				opacity: 0.6;
-
-				.icon-empty {
-					color: $color-outline-variant;
-					font-size: 48rpx;
-				}
-			}
-		}
 	}
 
 	/* Input Section */
