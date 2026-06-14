@@ -2,6 +2,8 @@
 comet_change: develop-profile-remaining-pages
 role: technical-design
 canonical_spec: openspec
+archived-with: 2026-06-14-develop-profile-remaining-pages
+status: final
 ---
 
 # Technical Design: Profile Remaining Secondary Pages & Auth Interception

@@ -2,6 +2,7 @@
 change: publish-module-enhancement
 design-doc: docs/superpowers/specs/2026-06-14-publish-module-enhancement-design.md
 base-ref: bebb9cdcd3b6bbbce193c1f3738dc44839558658
+archived-with: "2026-06-14-publish-module-enhancement"
 ---
 
 # Implementation Plan: 发布模块具体功能项完善
