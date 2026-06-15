@@ -2,6 +2,8 @@
 comet_change: ui-interactions-mock
 role: technical-design
 canonical_spec: openspec
+archived-with: 2026-06-14-ui-interactions-mock
+status: final
 ---
 
 # UI Interactions Mock - Design Document

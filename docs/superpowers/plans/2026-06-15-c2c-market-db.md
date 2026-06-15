@@ -2,6 +2,7 @@
 change: design-c2c-market-db
 design-doc: docs/superpowers/specs/2026-06-15-c2c-market-db-design.md
 base-ref: e67f60a4f3cc408c9582316b69588f7bef6ffa6b
+archived-with: 2026-06-15-design-c2c-market-db
 ---
 
 # C2C 二手交易平台数据库实施计划
@@ -14,6 +15,7 @@ base-ref: e67f60a4f3cc408c9582316b69588f7bef6ffa6b
 
 **Tech Stack:** MySQL 8.0+, SQL Script
 
+archived-with: 2026-06-15-design-c2c-market-db
 ---
 
 ### Task 1: 创建建库 SQL 脚本

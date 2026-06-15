@@ -2,6 +2,7 @@
 change: pure-logistics-notice-ui
 design-doc: docs/superpowers/specs/2026-06-14-pure-logistics-notice-ui-design.md
 base-ref: 20e84c73a7fd092584b0fc6627e21b415b976429
+archived-with: 2026-06-14-pure-logistics-notice-ui
 ---
 # Transaction Notice UI Implementation Plan
 
@@ -13,6 +14,7 @@ base-ref: 20e84c73a7fd092584b0fc6627e21b415b976429
 
 **Tech Stack:** Vue 2 Options API (for uni-app compatibility), SCSS.
 
+archived-with: 2026-06-14-pure-logistics-notice-ui
 ---
 
 ### Task 1: Update mock data
