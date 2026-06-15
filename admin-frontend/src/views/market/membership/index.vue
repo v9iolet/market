@@ -45,7 +45,7 @@
           @click="handleDelete"
         >删除</el-button>
       </el-col>
-      <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
+      <right-toolbar v-model:showSearch="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
     <el-table v-loading="loading" :data="membershipList" @selection-change="handleSelectionChange">
@@ -54,12 +54,12 @@
       <el-table-column label="等级名称" align="center" prop="levelName" />
       <el-table-column label="所需积分门槛" align="center" prop="pointThreshold" />
       <el-table-column label="折扣率" align="center" prop="discountRate">
-        <template slot-scope="scope">
+        <template #default="scope">
           <span>{{ (scope.row.discountRate * 10).toFixed(1) }} 折</span>
         </template>
       </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
-        <template slot-scope="scope">
+        <template #default="scope">
           <el-button
             size="mini"
             type="text"
@@ -77,7 +77,7 @@
     </el-table>
 
     <!-- 添加或修改会员等级配置对话框 -->
-    <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
+    <el-dialog :title="title" v-model="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="120px">
         <el-form-item label="等级名称" prop="levelName">
           <el-input v-model="form.levelName" placeholder="请输入等级名称 (如: 黄金会员)" />

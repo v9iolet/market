@@ -1,0 +1,1 @@
+- [x] Update `admin-frontend/src/views/market/membership/index.vue` with Vue 3 syntax
