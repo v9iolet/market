@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.MktMembershipLevelMapper">
+    
+    <resultMap type="MktMembershipLevel" id="MktMembershipLevelResult">
+        <result property="id"    column="id"    />
+        <result property="levelName"    column="level_name"    />
+        <result property="pointThreshold"    column="point_threshold"    />
+        <result property="discountRate"    column="discount_rate"    />
+        <result property="createTime"    column="created_at"    />
+        <result property="updateTime"    column="updated_at"    />
+    </resultMap>
+
+    <sql id="selectMktMembershipLevelVo">
+        select id, level_name, point_threshold, discount_rate, created_at, updated_at from mkt_membership_level
+    </sql>
+
+    <select id="selectMktMembershipLevelList" parameterType="MktMembershipLevel" resultMap="MktMembershipLevelResult">
+        <include refid="selectMktMembershipLevelVo"/>
+        <where>  
+            <if test="levelName != null  and levelName != ''"> and level_name like concat('%', #{levelName}, '%')</if>
+        </where>
+        order by point_threshold asc
+    </select>
+    
+    <select id="selectMktMembershipLevelById" parameterType="Long" resultMap="MktMembershipLevelResult">
+        <include refid="selectMktMembershipLevelVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertMktMembershipLevel" parameterType="MktMembershipLevel" useGeneratedKeys="true" keyProperty="id">
+        insert into mkt_membership_level
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="levelName != null and levelName != ''">level_name,</if>
+            <if test="pointThreshold != null">point_threshold,</if>
+            <if test="discountRate != null">discount_rate,</if>
+            <if test="createTime != null">created_at,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="levelName != null and levelName != ''">#{levelName},</if>
+            <if test="pointThreshold != null">#{pointThreshold},</if>
+            <if test="discountRate != null">#{discountRate},</if>
+            <if test="createTime != null">#{createTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateMktMembershipLevel" parameterType="MktMembershipLevel">
+        update mkt_membership_level
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="levelName != null and levelName != ''">level_name = #{levelName},</if>
+            <if test="pointThreshold != null">point_threshold = #{pointThreshold},</if>
+            <if test="discountRate != null">discount_rate = #{discountRate},</if>
+            <if test="updateTime != null">updated_at = #{updateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteMktMembershipLevelById" parameterType="Long">
+        delete from mkt_membership_level where id = #{id}
+    </delete>
+
+    <delete id="deleteMktMembershipLevelByIds" parameterType="String">
+        delete from mkt_membership_level where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
