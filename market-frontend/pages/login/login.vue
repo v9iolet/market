@@ -28,14 +28,27 @@
 
     <view class="form-container">
       <view class="input-group">
-        <text class="label">手机号 / 邮箱</text>
+        <text class="label">邮箱</text>
         <view class="input-wrapper">
           <input
             class="input"
             type="text"
-            placeholder="请输入账号"
+            placeholder="请输入邮箱地址"
             placeholder-class="placeholder-text"
           />
+        </view>
+      </view>
+
+      <view class="input-group">
+        <text class="label">验证码</text>
+        <view class="input-wrapper code-wrapper">
+          <input
+            class="input"
+            type="text"
+            placeholder="请输入验证码"
+            placeholder-class="placeholder-text"
+          />
+          <view class="get-code-btn">获取验证码</view>
         </view>
       </view>
 
@@ -237,6 +250,20 @@ const handleAction = () => {
 
       .placeholder-text {
         color: $color-outline;
+      }
+    }
+
+    .code-wrapper {
+      justify-content: space-between;
+
+      .get-code-btn {
+        color: $color-primary;
+        font-size: 28rpx;
+        font-weight: 600;
+        padding-left: 24rpx;
+        border-left: 2rpx solid rgba(197, 198, 205, 0.3);
+        height: 48rpx;
+        line-height: 48rpx;
       }
     }
   }

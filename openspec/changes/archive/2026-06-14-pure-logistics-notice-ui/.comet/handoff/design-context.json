@@ -1,0 +1,13 @@
+{
+  "change": "pure-logistics-notice-ui",
+  "phase": "design",
+  "mode": "compact",
+  "canonical_spec": "openspec",
+  "generated_by": "comet-handoff.sh",
+  "context_hash": "42c859c7cde71b7e6a20389e72410dc144f790388bdc2254d4c5e87c941212b1",
+  "files": [
+    { "path": "openspec/changes/pure-logistics-notice-ui/proposal.md", "sha256": "06532eaacba31538a53ec292a78ebba7fc120ce18cd1633757b86e53f5564e69" },
+    { "path": "openspec/changes/pure-logistics-notice-ui/design.md", "sha256": "307a87872c045a00a36c5b4bb28da2452050c65ed8061afd1875e58facd208cc" },
+    { "path": "openspec/changes/pure-logistics-notice-ui/tasks.md", "sha256": "0f02a828e7e585819fcac1e34ce701d842d86010cb777cf650dede59d71634f1" }
+  ]
+}

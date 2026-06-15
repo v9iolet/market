@@ -1,0 +1,14 @@
+{
+  "change": "design-c2c-market-db",
+  "phase": "design",
+  "mode": "compact",
+  "canonical_spec": "openspec",
+  "generated_by": "comet-handoff.sh",
+  "context_hash": "3da0887c851e91bd7270d4fa885f3727872c16144dedc03c24633f7b2565f6ba",
+  "files": [
+    { "path": "openspec/changes/design-c2c-market-db/proposal.md", "sha256": "68a1bb2937872f333619214c6ad60018b4cbe3121b7c5af4a18a77f053eacfd6" },
+    { "path": "openspec/changes/design-c2c-market-db/design.md", "sha256": "7ba213f57a038c4c0c94a3854294af6444554cde22020b963f996198e1785f8a" },
+    { "path": "openspec/changes/design-c2c-market-db/tasks.md", "sha256": "ba2c4dd11bb7b34ac4c248ae8d109eaf99415ca5468ab07c227d69b8dbcacc89" },
+    { "path": "openspec/changes/design-c2c-market-db/specs/schema/spec.md", "sha256": "85ea1d3d476d3dc12ef3bf09380308e4b744ed4ffa11cf78eafa7b2263c9cc52" }
+  ]
+}

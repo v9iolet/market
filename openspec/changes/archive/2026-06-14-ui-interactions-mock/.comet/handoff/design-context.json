@@ -1,0 +1,13 @@
+{
+  "change": "ui-interactions-mock",
+  "phase": "design",
+  "mode": "compact",
+  "canonical_spec": "openspec",
+  "generated_by": "comet-handoff.sh",
+  "context_hash": "e5bdca1db537fdecf2f675a67c621d98dd58ea3a0e320a95d262f9aa5ab005ef",
+  "files": [
+    { "path": "openspec/changes/ui-interactions-mock/proposal.md", "sha256": "a7234274578cbf1f2649936107008c8589f65fe8b2d117c3c9b595b738f0e879" },
+    { "path": "openspec/changes/ui-interactions-mock/design.md", "sha256": "73c0c66fa0d4f60b3bd4499284447847d35ad1795dd702750c5efe0ef8965e75" },
+    { "path": "openspec/changes/ui-interactions-mock/tasks.md", "sha256": "5eca215dcaf181c8c3dabf482f1c4897a473132d24cf497ed39847ef095c212e" }
+  ]
+}

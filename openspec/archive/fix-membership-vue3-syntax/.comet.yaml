@@ -1,5 +1,5 @@
 workflow: hotfix
-phase: build
+phase: archive
 context_compression: off
 build_mode: direct
 build_pause: null
@@ -11,9 +11,9 @@ auto_transition: true
 base_ref: 7ecc450c3e60fd8732b1a1cdca6abd79542ec6a3
 design_doc: null
 plan: null
-verify_result: pending
-verification_report: null
-branch_status: pending
+verify_result: pass
+verification_report: docs/superpowers/reports/2026-06-16-fix-membership-vue3-syntax-verify.md
+branch_status: handled
 created_at: 2026-06-15
-verified_at: null
+verified_at: 2026-06-15
 archived: false
