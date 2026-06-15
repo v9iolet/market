@@ -1,10 +1,8 @@
 /*
-!/docs/
-/docs/*
-!/docs/superpowers/
-!/openspec/
 !/market-backend/
 !/market-frontend/
-!/mysql数据文件/
-!/.gitignore
 !/admin-frontend/
+!/mysql数据文件/
+!/docs/
+!/openspec/
+!/.gitignore

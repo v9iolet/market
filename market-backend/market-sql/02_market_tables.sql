@@ -11,16 +11,18 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `mkt_user`;
 CREATE TABLE `mkt_user` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '用户ID',
-  `phone` varchar(20) NOT NULL COMMENT '手机号',
+  `email` varchar(100) NOT NULL COMMENT '邮箱',
   `password` varchar(100) NOT NULL COMMENT '密码',
   `nickname` varchar(50) NOT NULL COMMENT '昵称',
   `avatar` varchar(255) DEFAULT NULL COMMENT '头像URL',
-  `credit_score` int(11) DEFAULT '500' COMMENT '信用分（默认500）',
+  `points` int(11) DEFAULT '0' COMMENT '积分',
+  `historical_max_points` int(11) DEFAULT '0' COMMENT '历史最高积分',
+  `membership_level_id` bigint(20) DEFAULT NULL COMMENT '会员等级ID',
   `status` tinyint(4) DEFAULT '1' COMMENT '状态（1正常 0停用）',
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '注册时间',
   `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `idx_phone` (`phone`)
+  UNIQUE KEY `idx_email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='C端用户表';
 
 -- Table structure for mkt_user_address
@@ -51,6 +53,18 @@ CREATE TABLE `mkt_user_favorite` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_user_product` (`user_id`,`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='用户收藏表';
+
+-- Table structure for mkt_membership_level
+DROP TABLE IF EXISTS `mkt_membership_level`;
+CREATE TABLE `mkt_membership_level` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `level_name` varchar(50) NOT NULL COMMENT '等级名称',
+  `point_threshold` int(11) NOT NULL DEFAULT '0' COMMENT '所需积分门槛',
+  `discount_rate` decimal(3,2) NOT NULL DEFAULT '1.00' COMMENT '折扣率',
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='会员等级配置表';
 
 
 -- ----------------------------

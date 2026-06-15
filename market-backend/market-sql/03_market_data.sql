@@ -7,9 +7,18 @@ SET NAMES utf8mb4;
 -- ID 1: 卖家账号
 -- ID 2: 买家账号
 -- ----------------------------
-INSERT INTO `mkt_user` (`id`, `phone`, `password`, `nickname`, `avatar`, `credit_score`, `status`) VALUES
-(1, '13800000001', 'e10adc3949ba59abbe56e057f20f883e', '数码玩家老李', 'https://example.com/avatar/u1.png', 750, 1),
-(2, '13900000002', 'e10adc3949ba59abbe56e057f20f883e', '捡漏小王', 'https://example.com/avatar/u2.png', 680, 1);
+INSERT INTO `mkt_user` (`id`, `email`, `password`, `nickname`, `avatar`, `points`, `historical_max_points`, `membership_level_id`, `status`) VALUES
+(1, 'laoli@example.com', 'e10adc3949ba59abbe56e057f20f883e', '数码玩家老李', 'https://example.com/avatar/u1.png', 750, 750, 3, 1),
+(2, 'xiaowang@example.com', 'e10adc3949ba59abbe56e057f20f883e', '捡漏小王', 'https://example.com/avatar/u2.png', 680, 680, 2, 1);
+
+-- ----------------------------
+-- 1.5. 插入初始会员等级配置 (mkt_membership_level)
+-- ----------------------------
+INSERT INTO `mkt_membership_level` (`id`, `level_name`, `point_threshold`, `discount_rate`) VALUES
+(1, '普通会员', 0, 1.00),
+(2, '白银会员', 500, 0.98),
+(3, '黄金会员', 2000, 0.95),
+(4, '钻石会员', 5000, 0.90);
 
 -- ----------------------------
 -- 2. 插入测试地址数据 (mkt_user_address)
