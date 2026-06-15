@@ -1,3 +1,0 @@
-- [x] Change `uni.navigateBack` to `uni.reLaunch({ url: '/pages/profile/profile' })` in `handleAction`.
-- [x] Replace `chat` and `apple` icons with WeChat and QQ image icons.
-- [x] Fix icon styling (`.auth-icon` size adjustment).
