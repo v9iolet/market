@@ -25,9 +25,12 @@
 					</view>
 					<view class="user-details">
 						<text class="username">{{ userProfile.nickname || '极客小王' }}</text>
-						<view class="verified-tag">
-							<text class="material-symbols-outlined icon-small">verified_user</text>
-							<text>认证用户</text>
+						<view class="membership-info">
+							<view class="verified-tag">
+								<text class="material-symbols-outlined icon-small">diamond</text>
+								<text>{{ userProfile.levelName || '普通会员' }}</text>
+							</view>
+							<text class="points-text">积分: {{ userProfile.points || 0 }}</text>
 						</view>
 					</view>
 				</view>
@@ -325,22 +328,32 @@
 					margin-bottom: 8rpx;
 				}
 
-				.verified-tag {
-					display: inline-flex;
+				.membership-info {
+					display: flex;
 					align-items: center;
-					background-color: $color-secondary-container;
-					color: $color-on-secondary-container;
-					padding: 4rpx 16rpx;
-					border-radius: 9999rpx;
-					font-size: 20rpx;
-					font-weight: 600;
-					text-transform: uppercase;
-					letter-spacing: 0.05em;
+					gap: 16rpx;
 
-					.icon-small {
-						font-size: 28rpx;
-						margin-right: 4rpx;
-						font-variation-settings: 'FILL' 1;
+					.verified-tag {
+						display: inline-flex;
+						align-items: center;
+						background-color: #ffd700;
+						color: #333;
+						padding: 4rpx 16rpx;
+						border-radius: 9999rpx;
+						font-size: 20rpx;
+						font-weight: 600;
+						letter-spacing: 0.05em;
+
+						.icon-small {
+							font-size: 28rpx;
+							margin-right: 4rpx;
+							font-variation-settings: 'FILL' 1;
+						}
+					}
+					
+					.points-text {
+						font-size: 24rpx;
+						color: $color-on-surface-variant;
 					}
 				}
 			}

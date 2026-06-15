@@ -17,7 +17,11 @@
 				<text class="amount-label">应付金额</text>
 				<view class="amount-value">
 					<text class="currency">¥</text>
-					<text class="price">5899.00</text>
+					<text class="price">{{ finalPrice }}</text>
+				</view>
+				<view class="discount-tag" v-if="discountRate < 1">
+					<text class="material-symbols-outlined icon-small">diamond</text>
+					<text>{{ levelName }}专享 {{(discountRate * 10).toFixed(1)}}折 (已省 ¥{{ savedAmount }})</text>
 				</view>
 			</view>
 
@@ -91,7 +95,7 @@
 			<view class="bar-content">
 				<view class="total-section">
 					<text class="total-label">合计</text>
-					<text class="total-price">¥5899.00</text>
+					<text class="total-price">¥{{ finalPrice }}</text>
 				</view>
 				<view class="pay-btn active-scale">
 					<text>立即支付</text>
@@ -105,8 +109,19 @@
 	export default {
 		data() {
 			return {
-				selectedMethod: 'alipay'
+				selectedMethod: 'alipay',
+				originalPrice: 5899.00,
+				levelName: '黄金会员',
+				discountRate: 0.95
 			};
+		},
+		computed: {
+			finalPrice() {
+				return (this.originalPrice * this.discountRate).toFixed(2);
+			},
+			savedAmount() {
+				return (this.originalPrice - this.finalPrice).toFixed(2);
+			}
 		},
 		methods: {
 			goBack() {
@@ -213,6 +228,24 @@
 				font-size: 64rpx;
 				font-weight: 700;
 				letter-spacing: -0.02em;
+			}
+		}
+
+		.discount-tag {
+			display: inline-flex;
+			align-items: center;
+			background-color: rgba(255, 215, 0, 0.1);
+			color: #b8860b;
+			padding: 8rpx 24rpx;
+			border-radius: 9999rpx;
+			font-size: 24rpx;
+			font-weight: 600;
+			margin-top: 16rpx;
+
+			.icon-small {
+				font-size: 28rpx;
+				margin-right: 8rpx;
+				font-variation-settings: 'FILL' 1;
 			}
 		}
 	}
