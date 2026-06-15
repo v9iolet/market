@@ -16,7 +16,6 @@ CREATE TABLE `mkt_user` (
   `nickname` varchar(50) NOT NULL COMMENT '昵称',
   `avatar` varchar(255) DEFAULT NULL COMMENT '头像URL',
   `points` int(11) DEFAULT '0' COMMENT '积分',
-  `historical_max_points` int(11) DEFAULT '0' COMMENT '历史最高积分',
   `membership_level_id` bigint(20) DEFAULT NULL COMMENT '会员等级ID',
   `status` tinyint(4) DEFAULT '1' COMMENT '状态（1正常 0停用）',
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '注册时间',

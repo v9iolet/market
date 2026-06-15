@@ -6,10 +6,11 @@ SET NAMES utf8mb4;
 -- 1. 插入测试用户数据 (mkt_user)
 -- ID 1: 卖家账号
 -- ID 2: 买家账号
--- ----------------------------
-INSERT INTO `mkt_user` (`id`, `email`, `password`, `nickname`, `avatar`, `points`, `historical_max_points`, `membership_level_id`, `status`) VALUES
-(1, 'laoli@example.com', 'e10adc3949ba59abbe56e057f20f883e', '数码玩家老李', 'https://example.com/avatar/u1.png', 750, 750, 3, 1),
-(2, 'xiaowang@example.com', 'e10adc3949ba59abbe56e057f20f883e', '捡漏小王', 'https://example.com/avatar/u2.png', 680, 680, 2, 1);
+-- ---------------------------- 初始测试用户
+INSERT INTO `mkt_user` (`id`, `email`, `password`, `nickname`, `avatar`, `points`, `membership_level_id`, `status`) VALUES
+(1, 'admin@market.local', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '管理员', '', 0, 1, 1),
+(2, 'buyer@market.local', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '测试买家', '', 1500, 3, 1),
+(3, 'seller@market.local', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '测试卖家', '', 500, 2, 1);
 
 -- ----------------------------
 -- 1.5. 插入初始会员等级配置 (mkt_membership_level)
